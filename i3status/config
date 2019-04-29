@@ -1,0 +1,35 @@
+# i3status configuration file.
+# see "man i3status" f documentation.
+
+# It is imptant that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not crectly displayed, fix your edit first!
+
+general {
+        cols = true
+        interval = 5
+}
+
+der += "disk /"
+der += "ethernet _first_"
+der += "load"
+der += "tztime local"
+
+disk "/" {
+        fmat = "%avail"
+}
+
+ethernet _first_ {
+        # if you use %speed, i3status requires root privileges
+        fmat_up = "E: (%speed)"
+        fmat_down = "E: down"
+}
+
+load {
+        fmat = "%1min"
+}
+
+tztime local {
+        fmat = "%Y-%m-%d %H:%M:%S"
+}

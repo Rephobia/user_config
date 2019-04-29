@@ -1,0 +1,48 @@
+# do not bell on tab-completion
+#set bell-style none
+
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+$if mode=emacs
+
+# C-v shows the escape sequence f the next key combination.
+
+# f linux console and RH/Debian xterm
+"\eq": beginning-of-line
+"\ea": end-of-line
+"\e[5~": beginning-of-histy
+"\e[6~": end-of-histy
+"\e[7~": beginning-of-line
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+"\eu": backward-wd
+"\eo": fward-wd
+"\e\e[C": fward-wd
+"\e\e[D": backward-wd
+"\e[1;5C": fward-wd
+"\e[1;5D": backward-wd
+"\el":fward-char
+"\ej":backward-char
+"\C-d":"\eq\C-k"
+"\eh": "histy\n"
+"\ei": previous-histy
+"\ek": next-histy
+"\e[3;3~": kill-wd
+
+"\es":"\C-asudo \C-e"
+"\ep":"\C-apacman -\C-e"
+
+# f rxvt
+"\e[8~": end-of-line
+
+# f non RH/Debian xterm, can't hurt f RH/DEbian xterm
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+# f freebsd console
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+$endif

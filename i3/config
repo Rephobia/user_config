@@ -1,0 +1,102 @@
+# window setting
+font pango:DejaVu Sans Mono 9
+new_window nmal 0 px
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier mod4
+
+f_window [class=".*"] title_fmat "<b>%class</b>"
+
+
+bindsym mod1+Return exec lxterminal
+bindsym mod1+r exec ~/.config/i3/dmenu_starter.sh
+bindsym mod1++Shift+r exec rofi -modi run -show run -display-run "run current"
+bindsym mod1+e exec rofi -modi window -show window
+bindsym mod1+Shift+e exec ~/.config/i3/move_to_ws.sh
+
+bindsym mod4+Shift+x kill
+bindsym F11 fullscreen
+bindsym mod4+r reload
+bindsym mod4+Shift+r restart
+bindsym Shift+Tab focus left
+bindsym mod1+Tab focus right
+
+# exit i3 (logs you out of your X session)
+bindsym mod4+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shtcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+mode "resize" {
+
+        bindsym j resize shrink width 5 px  5 ppt
+        bindsym k resize grow height 5 px  5 ppt
+        bindsym i resize shrink height 5 px  5 ppt
+        bindsym l resize grow width 5 px  5 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+	bindsym Ctrl+g mode "default"
+	bindsym mod4+s mode "default"
+}
+
+bindsym mod4+s mode "resize"
+
+mode "exec_command" {
+
+     # change focus
+     bindsym mod1+i focus up
+     bindsym mod1+k focus down
+     bindsym mod1+j focus left
+     bindsym mod1+l focus right
+
+     # move focused window
+     bindsym mod1+Shift+i move up
+     bindsym mod1+Shift+k move down
+     bindsym mod1+Shift+j move left
+     bindsym mod1+Shift+l move right
+
+     # change container layout (stacked, tabbed, toggle split)
+     bindsym a layout tabbed; mode "default"
+     bindsym s layout stacking; mode "default"
+     bindsym d layout toggle split; mode "default"
+
+     # split in hizontal/vertical ientation
+     bindsym z split h; mode "default"
+     bindsym x split v; mode "default"
+
+     # toggle tiling / floating
+     bindsym mod1+f floating toggle
+
+     # change focus between tiling / floating windows
+     bindsym mod1+Shift+f focus mode_toggle
+
+     bindsym mod1+p focus parent
+     bindsym mod1+c focus child
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym mod1+grave mode "default"
+}
+
+bindsym mod1+grave mode "exec_command"
+
+# class          bder  backgr  text    indicat child_bder
+client.focused   #000000 #000000 #ffffff #000000 #000000
+client.unfocused #000000 #000000 #404040 #000000 #000000
+
+bar {
+    status_command i3status
+    mode hide
+    separat_symbol " | "
+    wkspace_buttons yes
+
+    cols {
+           background #000000
+           statusline #aaaaaa
+           separat  #303030
+
+           focused_wkspace  #000000 #000000 #ffffff
+           active_wkspace   #ffffff #ffffff #ffffff
+           inactive_wkspace #000000 #000000 #404040
+           urgent_wkspace   #500000 #500000 #606060
+           }
+}
