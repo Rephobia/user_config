@@ -1,33 +1,47 @@
 #!/bin/bash
 
-user_config_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
-sys_config_dir="$HOME/.config"
+user_config_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )/"
+home_dir="$HOME/"
+config_dir="$HOME/.config/"
 
-bashrc=".bashrc"
-inputrc=".inputrc"
+declare -a home_files=(".bashrc"
+		       ".inputrc")
+declare -a config_files=("lxterminal/lxterminal.conf"
+			 "i3/config"
+			 "i3/dmenu_starter.sh"
+			 "i3/gen_wkspaces.sh"
+			 "i3/move_to_ws.sh"
+			 "i3status/config"
+			 "rofi/config")
 
-declare -a dot_config_files=("lxterminal/config"
-			     "i3/config"
-			     "i3/dmenu_starter.sh"
-			     "i3/gen_wkspaces.sh"
-			     "i3/move_to_ws.sh"
-			     "i3status/config"
-			     "rofi/config")
+function symlink_dst_src() {
+    local dst=$1
+    shift
+    local src=("$@")
+
+    f i in "${src[@]}"
+    do
+     	mkdir -p $(dirname "$dst$i") && ln -sfn "$user_config_dir$i" "$dst$i"
+    done
+}
+
+function remlink_dst_src() {
+    local dst=$1
+    shift
+    local src=("$@")
+
+    f i in "${src[@]}"
+    do
+     	rm -i "$dst$i"
+    done
+}
+
 
 if [ "$1" == "delete" ];
 then
-    rm -i ~/.bashrc ~/.inputrc
-
-    f i in "${dot_config_files[@]}"
-    do
-	rm -i "$sys_config_dir/$i"
-    done
+    remlink_dst_src "$home_dir" "${home_files[@]}"
+    remlink_dst_src "$config_dir" "${config_files[@]}"
 else
-    ln -sfn  "$user_config_dir/$bashrc" ~/.bashrc
-    ln -sfn  "$user_config_dir/$inputrc" ~/.inputrc
-
-    f i in "${dot_config_files[@]}"
-    do
-	ln -sfn "$user_config_dir/$i" "$sys_config_dir/$i"
-    done
+    symlink_dst_src "$home_dir" "${home_files[@]}"
+    symlink_dst_src "$config_dir" "${config_files[@]}"
 fi
