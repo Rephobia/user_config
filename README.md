@@ -2,6 +2,9 @@
 
 ```shell
 
+
+
+
 cd user_config/
 chmod +x manage_config.sh
 ./manage_config.sh # to create symlink files
