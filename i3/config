@@ -1,6 +1,7 @@
 # window setting
 font pango:DejaVu Sans Mono 9
 new_window nmal 0 px
+exec "setxkbmap -layout us,ru -option grp:caps_toggle"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier mod4
