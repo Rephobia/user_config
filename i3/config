@@ -9,7 +9,6 @@ floating_modifier mod4
 f_window [class=".*"] title_fmat "<b>%class</b>"
 
 bindsym mod1+Return exec lxterminal
-bindsym mod1+Shift+Return exec lxterminal -t scratchpad
 
 bindsym mod1+r exec ~/.config/i3/dmenu_starter.sh
 bindsym mod1+Shift+r exec rofi -modi run -show run -display-run "run current"
@@ -80,16 +79,11 @@ mode "exec_command" {
 }
 
 bindsym mod1+grave mode "exec_command"
-# bindsym mod+grave mode "exec_command"
-# bindsym mod4+grave [title="Lxterminal"] scratchpad show
-# bindsym mod4+Shift+grave [title="Lxterminal"] move scratchpad
 
-# bindsym mod1+x scratchpad show; sticky enable
-bindsym mod1+Shift+minus move scratchpad
+# scratchpad
+f_window [title="scratchpad" instance="lxterminal"] bder pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
+bindsym mod1+Shift+Return exec lxterminal -t scratchpad
 bindsym mod1+minus scratchpad show
-
-f_window [title="scratchpad"] bder pixel 2, sticky enable, floating enable, move scratchpad, resize set 1000 600, move absolute position center
-
 
 # class          bder  backgr  text    indicat child_bder
 client.focused   #000000 #000000 #ffffff #000000 #000000
