@@ -1,3 +1,36 @@
+set $mod mod1
+
+# switch to wkspace
+bindsym $mod+1 wkspace 1
+bindsym $mod+2 wkspace 2
+bindsym $mod+3 wkspace 3
+bindsym $mod+4 wkspace 4
+bindsym $mod+5 wkspace 5
+bindsym $mod+6 wkspace 6
+bindsym $mod+7 wkspace 7
+bindsym $mod+8 wkspace 8
+bindsym $mod+9 wkspace 9
+bindsym $mod+0 wkspace 10
+
+# move focused container to wkspace
+bindsym $mod+Shift+1 move container to wkspace 1
+bindsym $mod+Shift+2 move container to wkspace 2
+bindsym $mod+Shift+3 move container to wkspace 3
+bindsym $mod+Shift+4 move container to wkspace 4
+bindsym $mod+Shift+5 move container to wkspace 5
+bindsym $mod+Shift+6 move container to wkspace 6
+bindsym $mod+Shift+7 move container to wkspace 7
+bindsym $mod+Shift+8 move container to wkspace 8
+bindsym $mod+Shift+9 move container to wkspace 9
+bindsym $mod+Shift+0 move container to wkspace 10
+
+#rofi
+bindsym $mod+r exec rofi -modi run -show run
+bindsym $mod+e exec rofi -modi window -show window
+bindsym $mod+Shift+e exec ~/.config/i3/move_to_ws.sh
+
+
+
 # window setting
 font pango:DejaVu Sans Mono 9
 new_window nmal 1 px
@@ -10,10 +43,6 @@ f_window [class=".*"] title_fmat "<b>%class</b>"
 
 bindsym mod1+Return exec lxterminal
 
-bindsym mod1+r exec ~/.config/i3/dmenu_starter.sh
-bindsym mod1+Shift+r exec rofi -modi run -show run -display-run "run current"
-bindsym mod1+e exec rofi -modi window -show window
-bindsym mod1+Shift+e exec ~/.config/i3/move_to_ws.sh
 
 bindsym mod4+Shift+x kill
 bindsym F11 fullscreen
