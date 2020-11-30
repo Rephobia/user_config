@@ -9,7 +9,7 @@ declare -a home_files=(".bashrc"
 declare -a config_files=("lxterminal/lxterminal.conf"
 			 "i3/config"
 			 "i3/dmenu_starter.sh"
-			 "i3/gen_wkspaces.sh"
+			 "i3/gen_workspaces.sh"
 			 "i3/move_to_ws.sh"
 			 "i3status/config"
 			 "rofi/config")
@@ -19,7 +19,7 @@ function symlink_dst_src() {
     shift
     local src=("$@")
 
-    f i in "${src[@]}"
+    for i in "${src[@]}"
     do
      	mkdir -p $(dirname "$dst$i") && ln -sfn "$user_config_dir$i" "$dst$i"
     done
@@ -30,7 +30,7 @@ function remlink_dst_src() {
     shift
     local src=("$@")
 
-    f i in "${src[@]}"
+    for i in "${src[@]}"
     do
      	rm -i "$dst$i"
     done

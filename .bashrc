@@ -5,11 +5,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-expt PATH
-expt EDITOR="nano"
-expt ALTERNATE_EDITOR=""
-alias ls='ls --col=auto'
-alias grep='grep --col=auto'
+export PATH
+export EDITOR="nano"
+export ALTERNATE_EDITOR=""
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias ll='ls -lah'
 PS1='[\u@\h \W]\$ '
 tty

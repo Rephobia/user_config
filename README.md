@@ -2,7 +2,7 @@
 
 ```shell
 
-
+or
 
 
 cd user_config/

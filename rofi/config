@@ -8,7 +8,7 @@ rofi.lines:                          10
 rofi.columns:                        1
 ! "Font to use" Set from: Default
 rofi.font:                           mono 12
-! "Bder width" Set from: Default
+! "Border width" Set from: Default
 rofi.bw:                             0
 ! "Location on screen" Set from: Default
 rofi.location:                       0
@@ -22,8 +22,8 @@ rofi.show-icons:                     false
 rofi.sidebar-mode:                   true
 ! "Row height (in chars)" Set from: Default
 rofi.eh:                             1
-! "Set the matching algithm. (nmal, regex, glob, fuzzy)" Set from: Default
-rofi.matching:                       nmal
+! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
+rofi.matching:                       normal
 ! "Margin between rows *DEPRECATED*" Set from: Default
 rofi.line-margin:                    2
 ! "Padding within rows *DEPRECATED*" Set from: Default
@@ -36,8 +36,8 @@ rofi.fullscreen:                     false
 rofi.fake-transparency:              true
 ! "Scrolling method. (0: Page, 1: Centered)" Set from: Default
 rofi.scroll-method:                  0
-! "Window Fmat. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
-rofi.window-fmat:                  {c}
+! "Window Format. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
+rofi.window-format:                  {c}
 ! "Click outside the window to exit" Set from: Default
 rofi.click-to-exit:                  true
 ! "Indicate how it match by underlining it." Set from: Default
@@ -52,20 +52,20 @@ rofi.kb-clear-line:                  Control+d
 rofi.kb-move-front:                  Alt+q
 ! "End of line" Set from: Default
 rofi.kb-move-end:                    Alt+a
-! "Move back one wd" Set from: Default
-rofi.kb-move-wd-back:              Alt+u
-! "Move fward one wd" Set from: Default
-rofi.kb-move-wd-fward:           Alt+o
+! "Move back one word" Set from: Default
+rofi.kb-move-word-back:              Alt+u
+! "Move forward one word" Set from: Default
+rofi.kb-move-word-forward:           Alt+o
 ! "Move back one char" Set from: Default
 rofi.kb-move-char-back:              Left,Alt+j
-! "Move fward one char" Set from: Default
-rofi.kb-move-char-fward:           Right,Alt+l
-! "Delete previous wd" Set from: Default
-rofi.kb-remove-wd-back:            Control+Alt+h,Alt+BackSpace
-! "Delete next wd" Set from: Default
-rofi.kb-remove-wd-fward:         Alt+Delete
+! "Move forward one char" Set from: Default
+rofi.kb-move-char-forward:           Right,Alt+l
+! "Delete previous word" Set from: Default
+rofi.kb-remove-word-back:            Control+Alt+h,Alt+BackSpace
+! "Delete next word" Set from: Default
+rofi.kb-remove-word-forward:         Alt+Delete
 ! "Delete next char" Set from: Default
-rofi.kb-remove-char-fward:         Delete
+rofi.kb-remove-char-forward:         Delete
 ! "Delete previous char" Set from: Default
 rofi.kb-remove-char-back:            BackSpace,Control+h
 ! "Delete till the end of line" Set from: Default

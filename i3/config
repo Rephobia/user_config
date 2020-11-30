@@ -1,65 +1,56 @@
-set $mod mod1
-
-# switch to wkspace
-bindsym $mod+1 wkspace 1
-bindsym $mod+2 wkspace 2
-bindsym $mod+3 wkspace 3
-bindsym $mod+4 wkspace 4
-bindsym $mod+5 wkspace 5
-bindsym $mod+6 wkspace 6
-bindsym $mod+7 wkspace 7
-bindsym $mod+8 wkspace 8
-bindsym $mod+9 wkspace 9
-bindsym $mod+0 wkspace 10
-
-# move focused container to wkspace
-bindsym $mod+Shift+1 move container to wkspace 1
-bindsym $mod+Shift+2 move container to wkspace 2
-bindsym $mod+Shift+3 move container to wkspace 3
-bindsym $mod+Shift+4 move container to wkspace 4
-bindsym $mod+Shift+5 move container to wkspace 5
-bindsym $mod+Shift+6 move container to wkspace 6
-bindsym $mod+Shift+7 move container to wkspace 7
-bindsym $mod+Shift+8 move container to wkspace 8
-bindsym $mod+Shift+9 move container to wkspace 9
-bindsym $mod+Shift+0 move container to wkspace 10
-
-#rofi
-bindsym $mod+r exec rofi -modi run -show run
-bindsym $mod+e exec rofi -modi window -show window
-bindsym $mod+Shift+e exec ~/.config/i3/move_to_ws.sh
-
-
+# system init
+exec "setxkbmap -layout us,ru -option grp:caps_toggle"
 
 # window setting
 font pango:DejaVu Sans Mono 9
-new_window nmal 1 px
-exec "setxkbmap -layout us,ru -option grp:caps_toggle"
+new_window normal 1 px
+for_window [class=".*"] title_format "<b>%class</b>"
+
+set $mod mod1
+
+# workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# run
+bindcode 133 exec dmenu_run
+bindsym $mod+Return exec lxterminal
+
+# exit i3 (logs you out of your X session)
+bindsym mod4+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier mod4
 
-f_window [class=".*"] title_fmat "<b>%class</b>"
-
-bindsym mod1+Return exec lxterminal
-
-
-bindsym mod4+Shift+x kill
-bindsym F11 fullscreen
-bindsym mod4+r reload
-bindsym mod4+Shift+r restart
+# focus
 bindsym Shift+Tab focus left
-bindsym mod1+Tab focus right
-
-# exit i3 (logs you out of your X session)
-bindsym mod4+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shtcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Tab focus right
 
 mode "resize" {
 
-        bindsym j resize shrink width 5 px  5 ppt
-        bindsym k resize grow height 5 px  5 ppt
-        bindsym i resize shrink height 5 px  5 ppt
-        bindsym l resize grow width 5 px  5 ppt
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym i resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -72,66 +63,72 @@ bindsym mod4+s mode "resize"
 mode "exec_command" {
 
      # change focus
-     bindsym mod1+i focus up
-     bindsym mod1+k focus down
-     bindsym mod1+j focus left
-     bindsym mod1+l focus right
+     bindsym $mod+i focus up
+     bindsym $mod+k focus down
+     bindsym $mod+j focus left
+     bindsym $mod+l focus right
+
+     bindsym $mod+p focus parent
+     bindsym $mod+c focus child
 
      # move focused window
-     bindsym mod1+Shift+i move up
-     bindsym mod1+Shift+k move down
-     bindsym mod1+Shift+j move left
-     bindsym mod1+Shift+l move right
+     bindsym $mod+Shift+i move up
+     bindsym $mod+Shift+k move down
+     bindsym $mod+Shift+j move left
+     bindsym $mod+Shift+l move right
 
      # change container layout (stacked, tabbed, toggle split)
      bindsym a layout tabbed; mode "default"
      bindsym s layout stacking; mode "default"
      bindsym d layout toggle split; mode "default"
 
-     # split in hizontal/vertical ientation
+     # split in horizontal/vertical orientation
      bindsym z split h; mode "default"
      bindsym x split v; mode "default"
 
      # toggle tiling / floating
-     bindsym mod1+f floating toggle
+     bindsym f floating toggle; mode "default"
 
      # change focus between tiling / floating windows
-     bindsym mod1+Shift+f focus mode_toggle
+     bindsym Shift+f focus mode_toggle
 
-     bindsym mod1+p focus parent
-     bindsym mod1+c focus child
+     bindsym r reload
+     bindsym Shift+r restart
+     bindsym k kill; mode "default"
+
+     bindsym m fullscreen; mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
-     bindsym mod1+grave mode "default"
+     bindsym $mod+grave mode "default"
 }
 
-bindsym mod1+grave mode "exec_command"
+bindsym $mod+grave mode "exec_command"
 
 # scratchpad
-f_window [title="scratchpad" instance="lxterminal"] bder pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
-bindsym mod1+Shift+Return exec lxterminal -t scratchpad
-bindsym mod1+minus scratchpad show
+for_window [title="scratchpad" instance="lxterminal"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
+bindsym $mod+Shift+Return exec lxterminal -t scratchpad
+bindsym $mod+minus scratchpad show
 
-# class          bder  backgr  text    indicat child_bder
+# class          border  backgr  text    indicat child_border
 client.focused   #000000 #000000 #ffffff #000000 #000000
 client.unfocused #000000 #000000 #404040 #000000 #000000
 
 bar {
     status_command i3status
     mode hide
-    separat_symbol " | "
-    wkspace_buttons yes
+    separator_symbol " | "
+    workspace_buttons yes
 
-    cols {
+    colors {
            background #000000
            statusline #aaaaaa
-           separat  #303030
+           separator  #303030
 
-           focused_wkspace  #000000 #000000 #ffffff
-           active_wkspace   #ffffff #ffffff #ffffff
-           inactive_wkspace #000000 #000000 #404040
-           urgent_wkspace   #500000 #500000 #606060
+           focused_workspace  #000000 #000000 #ffffff
+           active_workspace   #ffffff #ffffff #ffffff
+           inactive_workspace #000000 #000000 #404040
+           urgent_workspace   #500000 #500000 #606060
            }
 }
