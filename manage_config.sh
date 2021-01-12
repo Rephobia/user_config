@@ -1,47 +1,28 @@
 #!/bin/bash
 
-user_config_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )/"
-home_dir="$HOME/"
-config_dir="$HOME/.config/"
+repo="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
 
-declare -a home_files=(".bashrc"
-		       ".inputrc")
-declare -a config_files=("lxterminal/lxterminal.conf"
-			 "i3/config"
-			 "i3/dmenu_starter.sh"
-			 "i3/gen_workspaces.sh"
-			 "i3/move_to_ws.sh"
-			 "i3status/config"
-			 "rofi/config")
+repo_config_dir=$repo/config
+repo_home_dir=$repo/home
 
-function symlink_dst_src() {
-    local dst=$1
-    shift
-    local src=("$@")
 
-    for i in "${src[@]}"
-    do
-     	mkdir -p $(dirname "$dst$i") && ln -sfn "$user_config_dir$i" "$dst$i"
-    done
-}
+local_home_dir="$HOME/"
+local_config_dir="$HOME/.config/"
 
-function remlink_dst_src() {
-    local dst=$1
-    shift
-    local src=("$@")
 
-    for i in "${src[@]}"
-    do
-     	rm -i "$dst$i"
-    done
-}
+shopt -s dotglob # enable hidden files
 
 
 if [ "$1" == "delete" ];
 then
-    remlink_dst_src "$home_dir" "${home_files[@]}"
-    remlink_dst_src "$config_dir" "${config_files[@]}"
+    for file in $repo_config_dir/*; do
+	rm -i $local_config_dir$(basename $file)
+    done
+
+    for file in $repo_home_dir/*; do
+	rm -i $local_home_dir$(basename $file)
+    done
 else
-    symlink_dst_src "$home_dir" "${home_files[@]}"
-    symlink_dst_src "$config_dir" "${config_files[@]}"
+    ln -sfn $repo_config_dir/* $local_config_dir
+    ln -sfn $repo_home_dir/* $local_home_dir
 fi
