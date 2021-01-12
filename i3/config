@@ -117,7 +117,7 @@ client.unfocused #000000 #000000 #404040 #000000 #000000
 
 bar {
     status_command i3status
-    mode hide
+    mode dock
     separator_symbol " | "
     workspace_buttons yes
 
