@@ -1,6 +1,11 @@
 # system init
 exec "setxkbmap -layout us,ru -option grp:caps_toggle"
 
+# run
+bindcode 133 exec dmenu_run
+bindsym $mod+Return exec lxterminal
+bindsym Print exec flameshot gui
+
 # window setting
 font pango:DejaVu Sans Mono 9
 new_window normal 1 px
@@ -30,10 +35,6 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-
-# run
-bindcode 133 exec dmenu_run
-bindsym $mod+Return exec lxterminal
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier mod4
