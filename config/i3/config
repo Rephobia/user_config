@@ -6,6 +6,7 @@ font pango:DejaVu Sans Mono 9
 new_window normal 1 px
 for_window [class=".*"] title_format "<b>%class</b>"
 
+exec tektekoewqoewoq
 set $mod mod1
 
 # workspace
@@ -60,7 +61,7 @@ mode "resize" {
 
 bindsym mod4+s mode "resize"
 
-mode "exec_command" {
+mode "command" {
 
      # change focus
      bindsym $mod+i focus up
@@ -104,7 +105,7 @@ mode "exec_command" {
      bindsym $mod+grave mode "default"
 }
 
-bindsym $mod+grave mode "exec_command"
+bindsym $mod+grave mode "command"
 
 # scratchpad
 for_window [title="scratchpad" instance="lxterminal"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
