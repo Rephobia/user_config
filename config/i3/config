@@ -6,7 +6,6 @@ font pango:DejaVu Sans Mono 9
 new_window normal 1 px
 for_window [class=".*"] title_format "<b>%class</b>"
 
-exec tektekoewqoewoq
 set $mod mod1
 
 # workspace
