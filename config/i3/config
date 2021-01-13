@@ -43,21 +43,6 @@ floating_modifier mod4
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
 
-mode "resize" {
-
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym i resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-	bindsym Ctrl+g mode "default"
-	bindsym mod4+s mode "default"
-}
-
-bindsym mod4+s mode "resize"
-
 mode "command" {
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -70,6 +55,12 @@ mode "command" {
 
      bindsym $mod+p focus parent
      bindsym $mod+c focus child
+     
+     #resize
+     bindsym Ctrl+j resize shrink width 5 px or 5 ppt
+     bindsym Ctrl+k resize grow height 5 px or 5 ppt
+     bindsym Ctrl+i resize shrink height 5 px or 5 ppt
+     bindsym Ctrl+l resize grow width 5 px or 5 ppt
 
      # move focused window
      bindsym $mod+Shift+i move up
