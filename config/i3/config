@@ -35,9 +35,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindcode 133 exec dmenu_run
 bindsym $mod+Return exec lxterminal
 
-# exit i3 (logs you out of your X session)
-bindsym mod4+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier mod4
 
@@ -62,6 +59,8 @@ bindsym mod4+s mode "resize"
 
 mode "command" {
 
+     bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+     
      # change focus
      bindsym $mod+i focus up
      bindsym $mod+k focus down
@@ -83,8 +82,8 @@ mode "command" {
      bindsym d layout toggle split; mode "default"
 
      # split in horizontal/vertical orientation
-     bindsym z split h; mode "default"
-     bindsym x split v; mode "default"
+     bindsym h split h; mode "default"
+     bindsym v split v; mode "default"
 
      # toggle tiling / floating
      bindsym f floating toggle; mode "default"
