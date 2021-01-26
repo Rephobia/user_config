@@ -3,7 +3,7 @@ exec "setxkbmap -layout us,ru -option grp:caps_toggle"
 
 # run
 bindcode 133 exec dmenu_run
-bindsym $mod+Return exec lxterminal
+bindsym $mod+Return exec sakura
 bindsym Print exec flameshot gui
 
 # window setting
@@ -98,8 +98,8 @@ mode "command" {
 bindsym $mod+grave mode "command"
 
 # scratchpad
-for_window [title="scratchpad" instance="lxterminal"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
-bindsym $mod+Shift+Return exec lxterminal -t scratchpad
+for_window [title="scratchpad" instance="sakura"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
+bindsym $mod+Shift+Return exec sakura -t scratchpad
 bindsym $mod+minus scratchpad show
 
 # class          border  backgr  text    indicat child_border
