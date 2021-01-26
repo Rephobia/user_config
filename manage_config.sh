@@ -9,6 +9,13 @@ repo_home_dir=$repo/home
 local_home_dir="$HOME/"
 local_config_dir="$HOME/.config/"
 
+build_st()
+{
+    git clone https://git.suckless.org/st
+    cd st/
+    make
+    sudo make install
+}
 
 shopt -s dotglob # enable hidden files
 
@@ -25,4 +32,5 @@ then
 else
     ln -sfn $repo_config_dir/* $local_config_dir
     ln -sfn $repo_home_dir/* $local_home_dir
+    build_st
 fi
