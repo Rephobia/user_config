@@ -11,10 +11,11 @@ local_config_dir="$HOME/.config/"
 
 build_st()
 {
-    git clone https://git.suckless.org/st
-    cd st/
-    make
-    sudo make install
+    git init $repo/st/
+    git -C $repo/st/ remote add -f origin https://git.suckless.org/st
+    git -C $repo/st/ checkout master
+    make -C $repo/st/
+    sudo make -C $repo/st/ install
 }
 
 shopt -s dotglob # enable hidden files
