@@ -14,6 +14,8 @@ build_st()
     git init $repo/st/
     git -C $repo/st/ remote add -f origin https://git.suckless.org/st
     git -C $repo/st/ checkout master
+    git -C $repo/st/ apply $repo/st/*.diff
+    
     make -C $repo/st/
     sudo make -C $repo/st/ install
 }
