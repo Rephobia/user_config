@@ -104,9 +104,16 @@ for_window [title="scratchpad" instance="st"] border pixel 3, sticky enable, mov
 bindsym $mod+Shift+Return exec st -t scratchpad
 bindsym $mod+minus scratchpad show
 
-# class          border  backgr  text    indicat child_border
-client.focused   #000000 #000000 #ffffff #000000 #000000
-client.unfocused #000000 #000000 #404040 #000000 #000000
+
+set $major_text #eeeeec
+set $minor_text #555753
+set $background #272C2D
+set $attention #a40000
+
+
+# class          border      backgr      text        indicat child_border
+client.focused   $background $background $major_text #000000 $background
+client.unfocused $background $background $minor_text #000000 $background
 
 bar {
     status_command i3status
@@ -115,13 +122,14 @@ bar {
     workspace_buttons yes
 
     colors {
-           background #000000
-           statusline #aaaaaa
-           separator  #303030
-
-           focused_workspace  #000000 #000000 #ffffff
-           active_workspace   #ffffff #ffffff #ffffff
-           inactive_workspace #000000 #000000 #404040
-           urgent_workspace   #500000 #500000 #606060
+           background $background
+           statusline #888a85
+           separator  $background
+	   
+           #class             #border     #backgr     #text
+           focused_workspace  $background $background $major_text
+           active_workspace   #ffffff     #ffffff     $minor_text
+           inactive_workspace $background $background $minor_text
+           urgent_workspace   $attention  $attention  $major_text
            }
 }
