@@ -1,5 +1,6 @@
 # system init
 exec "setxkbmap -layout us,ru -option grp:caps_toggle"
+exec --no-startup-id compton -b
 
 # run
 bindcode 133 exec dmenu_run
@@ -44,11 +45,12 @@ floating_modifier mod4
 # focus
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
+bindsym $mod+g exec --no-startup-id python3 ~/.config/i3/focus_window.py
 
 mode "command" {
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-     
+
      # change focus
      bindsym $mod+i focus up
      bindsym $mod+k focus down
