@@ -1,11 +1,10 @@
 from i3ipc import Con, Connection, Event
 
-class Window(Con):
+class MemoryCon(Con):
 
-    def __init__(self, data, parent, conn):
-        Con.__init__(self, data, parent, conn)
+    def __init__(self, con: Con):
+        Con.__init__(self, con.ipc_data, con.parent, con._conn)
         self._save_last_workspace()
-
 
     def move_to_workspace(self, workspace: str):
         self._save_last_workspace()
