@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import manager
+import winswitch
 
 if __name__ == "__main__":
     
@@ -8,9 +9,9 @@ if __name__ == "__main__":
 
     manager.focus_workspace("tmp")
 
-    focused_window = manager.choose_window()
-
+    winid = winswitch.choose_window()
+    
     manager.restore_workspaces(memorycons);
     
-    manager.focus_window(focused_window)
+    manager.focus_window(winid)
 

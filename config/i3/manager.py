@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 
-import os
-import subprocess
-
-from i3ipc import Con, Connection
+from i3ipc import Connection
 from typing import List
 
 from memorycon import MemoryCon
-
         
 i3 = Connection()
 
@@ -23,13 +19,9 @@ def move_windows(workspace: str) -> List[MemoryCon]:
 def focus_workspace(workspace: str):
     i3.command("workspace %s" % workspace)
     
-def focus_window(con: MemoryCon):
-    i3.command('[id="%d"] focus' % con.window)
-
-def choose_window() -> Con:
-    subprocess.call([os.path.expanduser('~/.config/i3/winswitch/winswitch')])
-    return i3.get_tree().find_focused()
-
+def focus_window(winid : int):
+    i3.command('[id="%d"] focus' % winid)
+    
 def restore_workspaces(memorycons: List[MemoryCon]):
     for window in memorycons:
         window.move_to_workspace(window.last_workspace);

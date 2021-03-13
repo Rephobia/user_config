@@ -1,4 +1,4 @@
-from i3ipc import Con, Connection, Event
+from i3ipc import Con
 
 class MemoryCon(Con):
 
