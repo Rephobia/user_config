@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import i3
-import winswitch
+import wmfocus
 
 if __name__ == "__main__":
     
@@ -9,9 +9,9 @@ if __name__ == "__main__":
 
     i3.focus_workspace("tmp")
 
-    i3.set_layout(memorycons, rowsize=3)
+    i3.set_layout(memorycons, rowsize = 3)
     
-    winid = winswitch.choose_window()
+    winid = wmfocus.choose_window()
     
     i3.restore_workspaces(memorycons)
     
