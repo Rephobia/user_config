@@ -7,10 +7,10 @@ from memorycon import MemoryCon
         
 i3 = Connection()
 
-def move_windows(workspace: str) -> List[MemoryCon]:
+def move_windows(workspace: str, wm_classes: List[str]) -> List[MemoryCon]:
     memorycons = []
     for con in i3.get_tree():
-        if con.window and con.parent.type != 'dockarea' and con.workspace().name != '__i3_scratch':
+        if con.window and con.parent.type != 'dockarea' and con.workspace().name != '__i3_scratch' and con.window_class in wm_classes:
             memorycon = MemoryCon(con)
             memorycon.move_to_workspace(workspace)
             memorycons.append(memorycon)

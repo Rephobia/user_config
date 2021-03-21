@@ -2,10 +2,11 @@
 
 import i3
 import wmfocus
+import arguments
 
 if __name__ == "__main__":
-    
-    memorycons = i3.move_windows("tmp")
+
+    memorycons = i3.move_windows("tmp", arguments.wm_class())
 
     i3.focus_workspace("tmp")
 
