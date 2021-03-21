@@ -10,4 +10,4 @@ class _Arguments:
 
 def wm_class() -> list:
 
-    return _Arguments.args.wm_class
+    return _Arguments.args.wm_class if _Arguments.args.wm_class else []
