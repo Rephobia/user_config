@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from i3ipc import Connection
+from i3ipc import Connection, Con
 from typing import List
 
 from memorycon import MemoryCon
@@ -10,12 +10,15 @@ i3 = Connection()
 def move_windows(workspace: str, wm_classes: List[str]) -> List[MemoryCon]:
     memorycons = []
     for con in i3.get_tree():
-        if con.window and con.parent.type != 'dockarea' and con.workspace().name != '__i3_scratch' and con.window_class in wm_classes:
+        if _is_window(con) and con.window_class in wm_classes:
             memorycon = MemoryCon(con)
             memorycon.move_to_workspace(workspace)
             memorycons.append(memorycon)
     return memorycons
-    
+
+def inClasses(con, wm_classes) -> bool:
+    return con.window_class in wm_classes
+
 def focus_workspace(workspace: str):
     i3.command("workspace %s" % workspace)
     
@@ -45,3 +48,6 @@ def _move_left(con: MemoryCon, step: int):
 def _chunk(memorycons: List[MemoryCon], n):
     for i in range(0, len(memorycons), n):
         yield memorycons[i:i + n]
+
+def _is_window(con: Con) -> bool:
+    return con.window and con.parent.type != 'dockarea' and con.workspace().name != '__i3_scratch'
