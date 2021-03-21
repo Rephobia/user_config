@@ -2,12 +2,11 @@
 
 import argparse
 
-class _Arguments:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--wm_class', nargs='+', type=str, help="select windows by wm_class")
+_PARSER = argparse.ArgumentParser()
+_PARSER.add_argument('--wm_class', nargs='+', type=str, help="select windows by wm_class")
     
-    args = parser.parse_args()
+_ARGS = _PARSER.parse_args()
 
 def wm_class() -> list:
 
-    return _Arguments.args.wm_class if _Arguments.args.wm_class else []
+    return _ARGS.wm_class if _ARGS.wm_class else []
