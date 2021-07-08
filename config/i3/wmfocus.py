@@ -20,5 +20,6 @@ def choose_window(halign: str = "center",
                                      "--bgcolor", str(bgcolor),
                                      "--textcolor", str(textcolor),
                                      "--chars", str(chars),
+                                     "--exit-keys", "Control_L+g"
                                      ])
     return int(winid, 16)
