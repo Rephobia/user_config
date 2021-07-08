@@ -2,5 +2,5 @@ st/*
 !st/st-workingdir-20200317-51e19ea.diff
 !st-scrollback-20210507-4536f46.diff
 !st/config.h
-
+__pycache__
 
