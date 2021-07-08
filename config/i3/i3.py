@@ -10,13 +10,15 @@ i3 = Connection()
 def move_windows(workspace: str, wm_classes: List[str]) -> List[MemoryCon]:
     memorycons = []
     for con in i3.get_tree():
-        if _is_window(con) and con.window_class in wm_classes:
+        if _is_window(con) and in_classes(con, wm_classes):
             memorycon = MemoryCon(con)
             memorycon.move_to_workspace(workspace)
             memorycons.append(memorycon)
     return memorycons
 
-def inClasses(con, wm_classes) -> bool:
+def in_classes(con, wm_classes) -> bool:
+    if not wm_classes:
+        return True
     return con.window_class in wm_classes
 
 def focus_workspace(workspace: str):
