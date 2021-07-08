@@ -46,7 +46,7 @@ floating_modifier mod4
 # focus
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
-bindsym $mod+3 exec --no-startup-id "python3 ~/.config/i3/focus_window.py --wm_class Emacs Firefox Filezilla Chromium st-256color"
+bindsym $mod+3 exec --no-startup-id "python3 ~/.config/i3/focus_window.py"
 bindsym $mod+4 exec --no-startup-id "python3 ~/.config/i3/focus_window.py --wm_class Thunderbird discord Skype TelegramDesktop"
 
 mode "command" {
