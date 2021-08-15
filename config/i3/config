@@ -46,8 +46,8 @@ floating_modifier mod4
 # focus
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
-bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/focus_window.py"
-bindsym $mod+4 exec --no-startup-id "python3 ~/.config/i3/focus_window.py --wm_class Thunderbird discord Skype TelegramDesktop"
+bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash.py"
+bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash_move.py"
 
 mode "command" {
 
@@ -104,9 +104,10 @@ mode "command" {
 bindsym $mod+grave mode "command"
 
 # scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus exec "python3 ~/.config/i3/fullscreen_scratchpad.py"
+
 for_window [title="scratchpad" instance="st"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
-bindsym $mod+Shift+Return exec st -t scratchpad
-bindsym $mod+minus scratchpad show
 
 set $major_text #eeeeec
 set $minor_text #555753
