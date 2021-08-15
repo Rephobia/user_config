@@ -13,3 +13,5 @@ alias grep='grep --color=auto'
 alias ll='ls -lah'
 PS1='[\u@\h \W]\$ '
 tty
+
+export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
