@@ -119,8 +119,6 @@ mode "command" {
      bindsym Shift+r restart
      bindsym k kill; mode "default"
 
-     bindsym m fullscreen; mode "default"
-
      bindsym Return mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
@@ -128,6 +126,8 @@ mode "command" {
 }
 
 bindsym $mod+grave mode "command"
+
+bindsym $mod+m fullscreen
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
