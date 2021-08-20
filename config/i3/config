@@ -29,9 +29,43 @@ bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash.py"
 bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash_move.py"
 bindsym $mod+e exec --no-startup-id "~/.cargo/bin/wmfocus --exit-keys Control_L+g --chars wertdf"
 
+mode "stash"{
+     bindsym 1 workspace 1:s; mode "default"
+     bindsym 2 workspace 2:s; mode "default"
+     bindsym 3 workspace 3:s; mode "default"
+     bindsym 4 workspace 4:s; mode "default"
+     bindsym 5 workspace 5:s; mode "default"
+     bindsym 6 workspace 6:s; mode "default"
+     bindsym 7 workspace 7:s; mode "default"
+     bindsym 8 workspace 8:s; mode "default"
+     bindsym 9 workspace 9:s; mode "default"
+     bindsym 0 workspace 10:s; mode "default"
+     bindsym t workspace t:s; mode "default"
+     bindsym d workspace d:s; mode "default"
+     bindsym m workspace m:s; mode "default"
+     bindsym w workspace w:s; mode "default"
+
+     bindsym Shift+1 move container to workspace 1:s; mode "default"
+     bindsym Shift+2 move container to workspace 2:s; mode "default"
+     bindsym Shift+3 move container to workspace 3:s; mode "default"
+     bindsym Shift+4 move container to workspace 4:s; mode "default"
+     bindsym Shift+5 move container to workspace 5:s; mode "default"
+     bindsym Shift+6 move container to workspace 6:s; mode "default"
+     bindsym Shift+7 move container to workspace 7:s; mode "default"
+     bindsym Shift+8 move container to workspace 8:s; mode "default"
+     bindsym Shift+9 move container to workspace 9:s; mode "default"
+     bindsym Shift+0 move container to workspace 10:s; mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+}
+
 mode "command" {
 
-     
+     bindsym s mode "stash"
+
      bindsym 1 workspace 1; mode "default"
      bindsym 2 workspace 2; mode "default"
      bindsym 3 workspace 3; mode "default"
@@ -47,17 +81,6 @@ mode "command" {
      bindsym m workspace m; mode "default"
      bindsym w workspace w; mode "default"
 
-     bindsym $mod+1 workspace 1:s; mode "default"
-     bindsym $mod+2 workspace 2:s; mode "default"
-     bindsym $mod+3 workspace 3:s; mode "default"
-     bindsym $mod+4 workspace 4:s; mode "default"
-     bindsym $mod+5 workspace 5:s; mode "default"
-     bindsym $mod+6 workspace 6:s; mode "default"
-     bindsym $mod+7 workspace 7:s; mode "default"
-     bindsym $mod+8 workspace 8:s; mode "default"
-     bindsym $mod+9 workspace 9:s; mode "default"
-     bindsym $mod+0 workspace 10:s; mode "default"
-
      bindsym Shift+1 move container to workspace 1; mode "default"
      bindsym Shift+2 move container to workspace 2; mode "default"
      bindsym Shift+3 move container to workspace 3; mode "default"
@@ -72,17 +95,6 @@ mode "command" {
      bindsym Shift+d move container to workspace d; mode "default"
      bindsym Shift+m move container to workspace m; mode "default"
      bindsym Shift+w move container to workspace w; mode "default"
-
-     bindsym $mod+Shift+1 move container to workspace 1:s; mode "default"
-     bindsym $mod+Shift+2 move container to workspace 2:s; mode "default"
-     bindsym $mod+Shift+3 move container to workspace 3:s; mode "default"
-     bindsym $mod+Shift+4 move container to workspace 4:s; mode "default"
-     bindsym $mod+Shift+5 move container to workspace 5:s; mode "default"
-     bindsym $mod+Shift+6 move container to workspace 6:s; mode "default"
-     bindsym $mod+Shift+7 move container to workspace 7:s; mode "default"
-     bindsym $mod+Shift+8 move container to workspace 8:s; mode "default"
-     bindsym $mod+Shift+9 move container to workspace 9:s; mode "default"
-     bindsym $mod+Shift+0 move container to workspace 10:s; mode "default"
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
