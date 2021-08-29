@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # We have two workspace types, major and minor. Minor workspace names end with _SUFFIX
-_SUFFIX = ":s"
+_SUFFIX = "*"
 
 def _remove_sufix(text: str):
     if text.endswith(_SUFFIX):
