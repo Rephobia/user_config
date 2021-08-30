@@ -1,6 +1,7 @@
 # system init
 exec "setxkbmap -layout us,ru -option grp:caps_toggle"
 exec --no-startup-id compton -b
+exec_always feh --bg-scale ~/.config/i3/wallpaper/ign_unsplash8.png
 
 # run
 bindcode 133 exec dmenu_run
