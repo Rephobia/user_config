@@ -164,8 +164,6 @@ bindsym $mod+m fullscreen
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus exec "python3 ~/.config/i3/fullscreen_scratchpad.py"
 
-for_window [title="scratchpad" instance="st"] border pixel 3, sticky enable, move scratchpad, resize set 1920 1080, move position 0 0
-
 set $major_text #eeeeec
 set $minor_text #555753
 set $background #272C2D
