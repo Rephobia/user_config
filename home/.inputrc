@@ -45,4 +45,12 @@ $if mode=emacs
 # for freebsd console
 "\e[H": beginning-of-line
 "\e[F": end-of-line
+
+# for st ^[ is \e]
+set enable-keypad on
+"\e[3~": kill-word
+
 $endif
+
+
+
