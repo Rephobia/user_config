@@ -150,6 +150,9 @@ mode "command" {
      bindsym Shift+r restart
      bindsym k kill; mode "default"
 
+     bindsym minus move scratchpad; mode "default"
+     bindsym Shift+minus floating toggle; fullscreen; mode "default"
+
      bindsym Return mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
@@ -161,7 +164,6 @@ bindsym $mod+grave mode "command"
 bindsym $mod+m fullscreen
 
 # scratchpad
-bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus exec "python3 ~/.config/i3/fullscreen_scratchpad.py"
 
 set $major_text #eeeeec
