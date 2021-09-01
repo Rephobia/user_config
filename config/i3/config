@@ -44,7 +44,6 @@ mode "stash"{
      bindsym w workspace w*; mode "default"
      bindsym a workspace a*; mode "default"
 
-
      bindsym Shift+1 move container to workspace 1*; mode "default"
      bindsym Shift+2 move container to workspace 2*; mode "default"
      bindsym Shift+3 move container to workspace 3*; mode "default"
@@ -61,6 +60,16 @@ mode "stash"{
      bindsym Shift+w move container to workspace w*; mode "default"
      bindsym Shift+a move container to workspace a*; mode "default"
 
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+}
+
+mode "layout" {
+     bindsym t layout tabbed; mode "default"
+     bindsym s layout stacking; mode "default"
+     bindsym l layout toggle split; mode "default"
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
@@ -71,6 +80,7 @@ mode "stash"{
 mode "command" {
 
      bindsym s mode "stash"
+     bindsym l mode "layout"
 
      bindsym 1 workspace 1; mode "default"
      bindsym 2 workspace 2; mode "default"
@@ -104,7 +114,6 @@ mode "command" {
      bindsym Shift+w move container to workspace w; mode "default"
      bindsym Shift+a move container to workspace a; mode "default"
 
-
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
      # change focus
@@ -127,11 +136,6 @@ mode "command" {
      bindsym $mod+Shift+k move down
      bindsym $mod+Shift+j move left
      bindsym $mod+Shift+l move right
-
-     # change container layout (stacked, tabbed, toggle split)
-     bindsym z layout tabbed; mode "default"
-     bindsym x layout stacking; mode "default"
-     bindsym c layout toggle split; mode "default"
 
      # split in horizontal/vertical orientation
      bindsym h split h; mode "default"
