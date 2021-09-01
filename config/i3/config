@@ -12,7 +12,6 @@ bindsym Print exec flameshot gui
 font pango:DejaVu Sans Mono 9
 new_window normal 1 px
 for_window [class=".*"] title_format "<b>%class</b>"
-for_window [class="st-256color"] title_format "<b>%class</b>"
 
 hide_edge_borders both
 
