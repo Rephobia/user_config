@@ -23,8 +23,8 @@ floating_modifier mod4
 # focus
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
-bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash.py"
-bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/toggle_stash_move.py"
+bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash.py"
+bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash_move.py"
 bindsym $mod+e exec --no-startup-id "~/.cargo/bin/wmfocus --exit-keys Control_L+g -c ertdf --halign center --valign center -f 'Droid Sans':100 --bgcolor 'rgba(50, 50, 50, 0.7)' --textcolor 'rgba(255, 255, 255, 1)' --fill"
 
 mode "stash"{
@@ -164,7 +164,7 @@ bindsym $mod+grave mode "command"
 bindsym $mod+m fullscreen
 
 # scratchpad
-bindsym $mod+minus exec "python3 ~/.config/i3/fullscreen_scratchpad.py"
+bindsym $mod+minus exec "python3 ~/.config/i3/scripts/fullscreen_scratchpad.py"
 
 set $major_text #eeeeec
 set $minor_text #555753
