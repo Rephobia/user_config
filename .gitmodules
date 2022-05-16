@@ -1,0 +1,3 @@
+[submodule "builders/compile_st/st"]
+	path = builders/compile_st/st
+	url = https://git.suckless.org/st

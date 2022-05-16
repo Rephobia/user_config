@@ -55,7 +55,7 @@ index 48a6676..fab2ddc 100644
  static char *opt_title = NULL;
 +static char *opt_dir   = NULL;
  
- static int oldbutton = 3; /* button event on startup: 3 = release */
+ static uint buttons; /* bit field of pressed buttons */
  
 @@ -1958,12 +1959,12 @@ run(void)
  void

@@ -3,4 +3,4 @@ st/*
 !st-scrollback-20210507-4536f46.diff
 !st/config.h
 __pycache__
-
+venv
