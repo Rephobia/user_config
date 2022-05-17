@@ -2,5 +2,5 @@
 
 ```shell
 make venv
-make build
+sudo make build
 ```

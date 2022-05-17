@@ -6,6 +6,8 @@ import shutil
 from git import Repo
 
 def build():
+    _check_root();
+
     builder_directory = os.path.dirname(os.path.abspath(__file__))
     st_directory = os.path.join(builder_directory, 'st')
 
@@ -17,6 +19,14 @@ def build():
 
 def unbuild():
     pass
+
+def _check_root():
+    """
+    checks root previleges.
+    st 'make install' tries to copy files into /usr/local/bin/st/
+    """
+    if os.geteuid() != 0:
+        raise Exception('Builder must be run with sudo privileges, st needs to copy files into /usr/local/bin/st/')
 
 def _init_repository(directory: str) -> Repo:
     """
