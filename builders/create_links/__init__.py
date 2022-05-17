@@ -58,7 +58,7 @@ def _get_file_names(path: str) -> list:
     tries to get directory file names list, if directory doesn't exists raise Exception
     """
     if not os.path.exists(path):
-        raise Exception('Try to get directory files, but directory: ' + path + ' does not exists')
+        raise Exception(f'Try to get directory files, but directory: {path} does not exists')
 
     return os.listdir(path)
 

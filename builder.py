@@ -9,18 +9,40 @@ from typing import Callable
 
 class ConsoleColors:
     ERROR = '\033[0;31m'
-    ENDC = '\033[0m'
+    END_COLOR = '\033[0m'
+    OK = '\u001b[38;5;70m'
+
+    
+def build(builder: ModuleType) -> None:
+    """
+    is builder wrapper, that adds colored output
+    """
+    print(f'{ConsoleColors.OK}\nStart \'{builder.__name__}\' builder{ConsoleColors.END_COLOR}')
+    builder.build()
+    print(f'{ConsoleColors.OK}Finish \'{builder.__name__}\' builder\n{ConsoleColors.END_COLOR}')
+
+def unbuild(builder: ModuleType) -> None:
+    """
+    is unbuilder wrapper, that adds colored output
+    """
+    print(f'{ConsoleColors.OK}\nStart \'{builder.__name__}\' unbuilder{ConsoleColors.END_COLOR}')
+    builder.unbuild()
+    print(f'{ConsoleColors.OK}Finish \'{builder.__name__}\' unbuilder\n{ConsoleColors.END_COLOR}')
 
 def get_current_mode(user_passed_mode: str) -> Callable:
+    """
+    tries to get builder mode (build, unbuild) from user input,
+    if passed mode doesn't exist print error and exit
+    """
     modes = {
-        'build': lambda x: x.build(),
-        'unbuild': lambda x: x.unbuild()
+        'build': build,
+        'unbuild': unbuild
     }
 
     mode = modes.get(user_passed_mode, None)
 
     if not mode:
-        print(ConsoleColors.ERROR + '\nWrong command line argument\n' + ConsoleColors.ENDC)
+        print(f'{ConsoleColors.ERROR} \nError: Wrong command line argument\n {ConsoleColors.END_COLOR}')
         parser.print_help()
         sys.exit()
 
@@ -38,4 +60,4 @@ if __name__ == '__main__':
         try:
             mode(builder)
         except Exception as error:
-            print(ConsoleColors.ERROR + 'Error: ' + ConsoleColors.ENDC, error)
+            print(f'{ConsoleColors.ERROR}Error: {ConsoleColors.END_COLOR}', error)
