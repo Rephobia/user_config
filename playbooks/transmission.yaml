@@ -3,7 +3,7 @@
   hosts:
     - transmission
   become: yes
-  no_log: True
+  no_log: true
   tasks:
     - name: Mount up device by UUID
       ansible.posix.mount:
@@ -52,6 +52,7 @@
         path: "{{ transmission_directory}}/{{ item.value.name }}/watch"
         owner: "{{ item.value.name }}"
         group: "{{ item.value.name }}"
+        mode: 0775
       loop: "{{ transmission_users | default({}) | dict2items }}"
       when: transmission_directory
 
