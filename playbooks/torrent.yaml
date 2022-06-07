@@ -3,7 +3,7 @@
   hosts:
     - torrent
   become: yes
-  # no_log: true
+  no_log: true
   tasks:
     - name: Mount up device by UUID
       mount:
