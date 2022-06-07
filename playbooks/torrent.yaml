@@ -1,0 +1,94 @@
+---
+- name: Configure torrent server
+  hosts:
+    - torrent
+  become: yes
+  # no_log: true
+  tasks:
+    - name: Mount up device by UUID
+      mount:
+        path: "{{ item.path }}"
+        src: UUID="{{ item.uuid }}"
+        fstype: "{{ item.fstype }}"
+        state: "{{ item.state }}"
+      loop: "{{ torrent_mount_devices | default([]) }}"
+
+    - name: Create transmission users
+      user:
+        name: "{{ item.name }}"
+      loop: "{{ torrent_users | default([]) }}"
+
+    - name: Create transmission directory
+      file:
+        path: "{{ torrent_directory }}"
+        state: directory
+      when: torrent_directory is defined
+
+    - name: Install transmission
+      apt:
+        name: transmission-daemon
+        state: present
+
+    - name: Make sure transmission is not running
+      service:
+        name: "transmission-daemon.{{ item.name }}.service"
+        state: stopped
+      ignore_errors: true
+      loop: "{{ torrent_users | default([]) }}"
+
+    - name: Add downloads folder
+      file:
+        state: directory
+        path: "{{ torrent_directory}}/{{ item.name }}/downloads"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: 0775
+      loop: "{{ torrent_users | default([]) }}"
+      when: torrent_directory and item.transmission is defined
+
+    - name: Add watch dir
+      file:
+        state: directory
+        path: "{{ torrent_directory}}/{{ item.name }}/watch"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: 0775
+      loop: "{{ torrent_users | default([]) }}"
+      when: torrent_directory and item.transmission is defined
+
+    - name: Add incomplete folder
+      file:
+        state: directory
+        path: "{{ torrent_directory}}/{{ item.name }}/incomplete"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: 0775
+      loop: "{{ torrent_users | default([]) }}"
+      when: torrent_directory and item.transmission is defined
+
+    - name: Copy Transmission configuration
+      template:
+        src: transmission/settings.json.j2
+        dest: "/home/{{ item.name }}/.config/transmission-daemon/settings.json"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+      loop: "{{ torrent_users }}"
+      when: torrent_directory and item.transmission is defined
+
+    - name: Copy systemd unit files
+      template:
+        src: transmission/transmission.service.j2
+        dest: "/etc/systemd/system/transmission-daemon.{{ item.name }}.service"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0644
+      loop: "{{ torrent_users | default([]) }}"
+      when: item.transmission is defined
+
+    - name: Start transmission
+      service:
+        name: "transmission-daemon.{{ item.name }}.service"
+        state: started
+      ignore_errors: true
+      loop: "{{ torrent_users | default([]) }}"
+      when: item.transmission is defined

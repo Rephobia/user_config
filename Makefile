@@ -32,3 +32,10 @@ copy-examples: ## copy example host_vars files, if not example file doesn't exis
 
 copy-examples-force: ## force copy example host_vars files, if example file exists, command replace file to it example version
 	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/copy-examples.yaml --extra-vars='force_copy=yes')
+
+##
+##SELF-HOSTED BUILD COMMANDS
+##
+
+torrent: ## build torrent environment
+	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/torrent.yaml)

@@ -1,11 +1,11 @@
 [Unit]
-Description=Transmission BitTorrent Daemon for user {{ item.value.name }}
+Description=Transmission BitTorrent Daemon for user {{ item.name }}
 After=network.target
 
 [Service]
-User={{ item.value.name }}
+User={{ item.name }}
 Type=notify
-ExecStart=/usr/bin/transmission-daemon -f --log-error -g /home/{{ item.value.name }}/.config/transmission-daemon
+ExecStart=/usr/bin/transmission-daemon -f --log-error -g /home/{{ item.name }}/.config/transmission-daemon
 ExecStop=/bin/kill -s STOP $MAINPID
 ExecReload=/bin/kill -s HUP $MAINPID
 
