@@ -72,7 +72,7 @@
         dest: "/home/{{ item.name }}/.config/transmission-daemon/settings.json"
         owner: "{{ item.name }}"
         group: "{{ item.name }}"
-      loop: "{{ torrent_users }}"
+      loop: "{{ torrent_users | default([]) }}"
       when: torrent_directory and item.transmission is defined
 
     - name: Copy systemd unit files
