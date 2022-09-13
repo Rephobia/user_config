@@ -39,3 +39,6 @@ copy-examples-force: ## force copy example host_vars files, if example file exis
 
 torrent: ## build torrent environment
 	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/torrent.yaml)
+
+nas-qbittorrent: ## build torrent environment
+	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/qbittorrent.yaml --vault-password-file .ansible_vault)
