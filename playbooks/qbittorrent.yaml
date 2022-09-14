@@ -5,37 +5,13 @@
   become: yes
   no_log: true
   tasks:
-    - name: Mount up device by UUID
-      mount:
-        path: "{{ item.path }}"
-        src: UUID="{{ item.uuid }}"
-        fstype: "{{ item.fstype }}"
-        state: "{{ item.state }}"
-      loop: "{{ nas_mount_devices }}"
+    - name: Ensure nas is configurated
+      include_tasks: configure-nas.yaml
 
     - name: Ensure package is installed
       package:
         name: qbittorrent-nox
         state: present
-
-    - name: Ensure service user exists
-      user:
-        name: "{{ nas_qbittorrent_nox_user }}"
-        comment: qBittorrent nox user
-        shell: /usr/sbin/nologin
-        system: yes
-        state: present
-      register: nas_qbittorrent_nox_user_info
-
-    - name: Ensure torrent directories exist
-      file:
-        path: "{{ item }}"
-        state: directory
-        recurse: yes
-        owner: "{{ nas_qbittorrent_nox_user_info.name }}"
-        group: "{{ nas_qbittorrent_nox_user_info.group }}"
-      loop:
-          "{{ nas_torrent_directories }}"
 
     - name: Return information about installed packages as facts.
       ansible.builtin.package_facts:
