@@ -42,3 +42,6 @@ torrent: ## build torrent environment
 
 nas-qbittorrent: ## build torrent environment
 	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/qbittorrent.yaml --vault-password-file .ansible_vault)
+
+nas-samba: ## build samba environment
+	(source ./venv/bin/activate; ansible-playbook -i inventory.yaml playbooks/samba.yaml --vault-password-file .ansible_vault)

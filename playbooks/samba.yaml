@@ -1,0 +1,8 @@
+---
+- name: Configure samba
+  hosts:
+    - nas
+  become: yes
+  no_log: true
+  roles:
+   - role: bertvv.samba
