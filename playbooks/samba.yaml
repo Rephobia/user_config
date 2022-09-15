@@ -6,3 +6,15 @@
   no_log: true
   roles:
    - role: bertvv.samba
+     samba_shares_root: "{{ nas_samba_shares_root }}"
+
+     samba_users:
+       - name: "{{ nas_qbittorrent_nox_user }}"
+         password: "{{ nas_samba_user_password }}"
+
+     samba_shares:
+       - name: "{{ nas_samba_shares_torrent_name}}"
+         valid_users: "{{ nas_qbittorrent_nox_user }}"
+         write_list: "{{ nas_qbittorrent_nox_user }}"
+         group: "{{ nas_qbittorrent_nox_user }}"
+         browseable: 'no'
