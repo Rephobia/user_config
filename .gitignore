@@ -4,6 +4,4 @@ st/*
 !st/config.h
 __pycache__
 venv
-host_vars/*
-!host_vars/*.example.yaml
 .ansible_vault
