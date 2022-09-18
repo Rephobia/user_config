@@ -9,7 +9,7 @@ venv:
 local-build: venv
     ./venv/bin/python builder.py build
 
-# configure local system
+# unconfigure local system
 local-unbuild: venv
     ./venv/bin/python builder.py unbuild
 
