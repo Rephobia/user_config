@@ -13,6 +13,9 @@ local-build: venv
 local-unbuild: venv
     ./venv/bin/python builder.py unbuild
 
+local-st: venv
+    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-st.yaml --vault-password-file .ansible_vault
+
 # configure qbittorrent on nas
 nas-qbittorrent: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-qbittorrent.yaml --vault-password-file .ansible_vault

@@ -1,0 +1,27 @@
+---
+- name: Compile and build st on localhost
+  hosts:
+    - localhost
+  tasks:
+    - name: Copy files for compile
+      copy:
+        src: "{{ item }}"
+        dest: "{{ playbook_dir }}/files/st/source/"
+      loop: "{{ lookup('fileglob', 'st/copy_files/*', wantlist=True) }}"
+
+    - name: Apply patches for st
+      ansible.posix.patch:
+        src: "{{ item }}"
+        basedir: "{{ playbook_dir }}/files/st/source/"
+        strip: 1
+      loop: "{{ lookup('fileglob', 'st/patches/*', wantlist=True) }}"
+
+    - name: Build the default target
+      make:
+        chdir: "{{ playbook_dir }}/files/st/source/"
+
+    - name: Copy st binary to .local/bin
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/st/source/st"
+        dest: "{{ ansible_env.HOME }}/.local/bin"
+        mode: "0775"
