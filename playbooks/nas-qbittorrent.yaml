@@ -1,5 +1,5 @@
 ---
-- name: Configure qbittorrent
+- name: Configure qbittorrent on nas
   hosts:
     - nas
   become: yes

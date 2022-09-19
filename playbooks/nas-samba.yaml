@@ -1,5 +1,5 @@
 ---
-- name: Configure samba
+- name: Configure samba on nas
   hosts:
     - nas
   become: yes
