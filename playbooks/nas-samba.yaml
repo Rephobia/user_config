@@ -4,6 +4,10 @@
     - nas
   become: yes
   no_log: true
+  pre_tasks:
+    - name: Ensure nas is configurated
+      include_tasks: configure-nas.yaml
+
   roles:
    - role: bertvv.samba
      samba_shares_root: "{{ nas_samba_shares_root }}"

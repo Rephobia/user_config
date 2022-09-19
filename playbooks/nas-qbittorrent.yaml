@@ -4,10 +4,10 @@
     - nas
   become: yes
   no_log: true
-  tasks:
+  pre_tasks:
     - name: Ensure nas is configurated
       include_tasks: configure-nas.yaml
-
+  tasks:
     - name: Ensure package is installed
       package:
         name: qbittorrent-nox
