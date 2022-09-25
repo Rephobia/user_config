@@ -1,0 +1,13 @@
+---
+- name: Copy i3wm config files
+  hosts:
+    - localhost
+  tasks:
+    - name: Copy i3wm to .config directory
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/"
+      loop:
+        - "{{ playbook_dir }}/files/i3/i3"
+        - "{{ playbook_dir }}/files/i3/i3status"
+

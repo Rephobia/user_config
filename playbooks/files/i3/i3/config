@@ -1,0 +1,197 @@
+# system init
+exec "setxkbmap -layout us,ru -option grp:caps_toggle"
+exec --no-startup-id compton -b
+exec_always feh --bg-scale ~/.config/i3/wallpapers/ign_unsplash8.png
+exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 1920x1080 --rate 144
+
+# run
+bindcode 133 exec dmenu_run
+bindsym $mod+Return exec st
+bindsym Print exec flameshot gui
+
+# window setting
+font pango:DejaVu Sans Mono 9
+new_window normal 1 px
+for_window [class=".*"] title_format "<b>%class</b>"
+
+hide_edge_borders both
+
+set $mod mod1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier mod4
+
+# focus
+bindsym Shift+Tab focus left
+bindsym $mod+Tab focus right
+bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash.py"
+bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash_move.py"
+bindsym $mod+e exec --no-startup-id "~/.cargo/bin/wmfocus --exit-keys Control_L+g -c ertdf --halign center --valign center -f 'Droid Sans':100 --bgcolor 'rgba(50, 50, 50, 0.7)' --textcolor 'rgba(255, 255, 255, 1)' --fill"
+
+mode "stash"{
+     bindsym 1 workspace 1*; mode "default"
+     bindsym 2 workspace 2*; mode "default"
+     bindsym 3 workspace 3*; mode "default"
+     bindsym 4 workspace 4*; mode "default"
+     bindsym 5 workspace 5*; mode "default"
+     bindsym 6 workspace 6*; mode "default"
+     bindsym 7 workspace 7*; mode "default"
+     bindsym 8 workspace 8*; mode "default"
+     bindsym 9 workspace 9*; mode "default"
+     bindsym 0 workspace 10*; mode "default"
+     bindsym t workspace t*; mode "default"
+     bindsym d workspace d*; mode "default"
+     bindsym m workspace m*; mode "default"
+     bindsym w workspace w*; mode "default"
+     bindsym a workspace a*; mode "default"
+
+     bindsym Shift+1 move container to workspace 1*; mode "default"
+     bindsym Shift+2 move container to workspace 2*; mode "default"
+     bindsym Shift+3 move container to workspace 3*; mode "default"
+     bindsym Shift+4 move container to workspace 4*; mode "default"
+     bindsym Shift+5 move container to workspace 5*; mode "default"
+     bindsym Shift+6 move container to workspace 6*; mode "default"
+     bindsym Shift+7 move container to workspace 7*; mode "default"
+     bindsym Shift+8 move container to workspace 8*; mode "default"
+     bindsym Shift+9 move container to workspace 9*; mode "default"
+     bindsym Shift+0 move container to workspace 10*; mode "default"
+     bindsym Shift+t move container to workspace t*; mode "default"
+     bindsym Shift+d move container to workspace d*; mode "default"
+     bindsym Shift+m move container to workspace m*; mode "default"
+     bindsym Shift+w move container to workspace w*; mode "default"
+     bindsym Shift+a move container to workspace a*; mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+}
+
+mode "layout" {
+     bindsym t layout tabbed; mode "default"
+     bindsym s layout stacking; mode "default"
+     bindsym l layout toggle split; mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+}
+
+mode "command" {
+     bindsym s mode "stash"
+     bindsym l mode "layout"
+
+     bindsym 1 workspace 1; mode "default"
+     bindsym 2 workspace 2; mode "default"
+     bindsym 3 workspace 3; mode "default"
+     bindsym 4 workspace 4; mode "default"
+     bindsym 5 workspace 5; mode "default"
+     bindsym 6 workspace 6; mode "default"
+     bindsym 7 workspace 7; mode "default"
+     bindsym 8 workspace 8; mode "default"
+     bindsym 9 workspace 9; mode "default"
+     bindsym 0 workspace 10; mode "default"
+     bindsym t workspace t; mode "default"
+     bindsym d workspace d; mode "default"
+     bindsym m workspace m; mode "default"
+     bindsym w workspace w; mode "default"
+     bindsym a workspace a; mode "default"
+
+     bindsym Shift+1 move container to workspace 1; mode "default"
+     bindsym Shift+2 move container to workspace 2; mode "default"
+     bindsym Shift+3 move container to workspace 3; mode "default"
+     bindsym Shift+4 move container to workspace 4; mode "default"
+     bindsym Shift+5 move container to workspace 5; mode "default"
+     bindsym Shift+6 move container to workspace 6; mode "default"
+     bindsym Shift+7 move container to workspace 7; mode "default"
+     bindsym Shift+8 move container to workspace 8; mode "default"
+     bindsym Shift+9 move container to workspace 9; mode "default"
+     bindsym Shift+0 move container to workspace 10; mode "default"
+     bindsym Shift+t move container to workspace t; mode "default"
+     bindsym Shift+d move container to workspace d; mode "default"
+     bindsym Shift+m move container to workspace m; mode "default"
+     bindsym Shift+w move container to workspace w; mode "default"
+     bindsym Shift+a move container to workspace a; mode "default"
+
+     bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+     # change focus
+     bindsym $mod+i focus up
+     bindsym $mod+k focus down
+     bindsym $mod+j focus left
+     bindsym $mod+l focus right
+
+     bindsym $mod+p focus parent
+     bindsym $mod+c focus child
+     
+     #resize
+     bindsym Ctrl+j resize shrink width 5 px or 5 ppt
+     bindsym Ctrl+k resize grow height 5 px or 5 ppt
+     bindsym Ctrl+i resize shrink height 5 px or 5 ppt
+     bindsym Ctrl+l resize grow width 5 px or 5 ppt
+
+     # move focused window
+     bindsym $mod+Shift+i move up
+     bindsym $mod+Shift+k move down
+     bindsym $mod+Shift+j move left
+     bindsym $mod+Shift+l move right
+
+     # split in horizontal/vertical orientation
+     bindsym h split h; mode "default"
+     bindsym v split v; mode "default"
+
+     # toggle tiling / floating
+     bindsym f floating toggle; mode "default"
+
+     # change focus between tiling / floating windows
+     bindsym Shift+f focus mode_toggle
+
+     bindsym r reload
+     bindsym Shift+r restart
+     bindsym k kill; mode "default"
+
+     bindsym minus move scratchpad; mode "default"
+     bindsym Shift+minus floating toggle; fullscreen; mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+}
+
+bindsym $mod+grave mode "command"
+
+bindsym $mod+m fullscreen
+
+# scratchpad
+bindsym $mod+minus exec "python3 ~/.config/i3/scripts/fullscreen_scratchpad.py"
+
+set $major_text #eeeeec
+set $minor_text #555753
+set $background #272C2D
+set $attention #a40000
+
+
+# class          border      backgr      text        indicat child_border
+client.focused   $background $background $major_text #000000 $background
+client.unfocused $background $background $minor_text #000000 $background
+
+bar {
+    status_command i3status
+    mode dock
+    separator_symbol " | "
+    workspace_buttons yes
+
+    colors {
+           background $background
+           statusline #888a85
+           separator  $background
+	   
+           #class             #border     #backgr     #text
+           focused_workspace  $background $background $major_text
+           active_workspace   #ffffff     #ffffff     $minor_text
+           inactive_workspace $background $background $minor_text
+           urgent_workspace   $attention  $attention  $major_text
+           }
+}

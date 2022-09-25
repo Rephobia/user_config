@@ -21,6 +21,10 @@ local-st: venv
 local-cli: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-cli.yaml --vault-password-file .ansible_vault
 
+# configure i3wm
+local-i3: venv
+    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-i3.yaml --vault-password-file .ansible_vault
+
 # configure qbittorrent on nas
 nas-qbittorrent: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-qbittorrent.yaml --vault-password-file .ansible_vault
