@@ -4,7 +4,7 @@
     - localhost
   tasks:
     - name: Copy files to home directory
-      copy:
+      ansible.builtin.copy:
         src: "{{item }}"
         dest: "{{ ansible_env.HOME }}"
       loop: "{{ lookup('fileglob', 'cli/.*', wantlist=True) }}"

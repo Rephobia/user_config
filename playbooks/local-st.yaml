@@ -4,7 +4,7 @@
     - localhost
   tasks:
     - name: Copy files for compile
-      copy:
+      ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ playbook_dir }}/files/st/source/"
       loop: "{{ lookup('fileglob', 'st/copy_files/*', wantlist=True) }}"
