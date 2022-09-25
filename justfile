@@ -1,6 +1,8 @@
+# list of all justfile recipes
 default:
-    just --list
+    just --list --unsorted
 
+# create python virtual environment for ansible
 venv:
     python3 -m venv venv
     ./venv/bin/pip install -r requirements.txt
@@ -17,6 +19,12 @@ local-cli: venv
 local-i3: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-i3.yaml --vault-password-file .ansible_vault
 
+# run all local playbooks
+local-all:
+    local-st
+    local-cli
+    local-i3
+
 # configure qbittorrent on nas
 nas-qbittorrent: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-qbittorrent.yaml --vault-password-file .ansible_vault
@@ -25,5 +33,7 @@ nas-qbittorrent: venv
 nas-samba: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-samba.yaml --vault-password-file .ansible_vault
 
-# configure nas
-nas-configure: nas-qbittorrent nas-samba
+# run all nas playbooks
+nas-all:
+    nas-qbittorrent
+    nas-samba
