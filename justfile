@@ -5,14 +5,6 @@ venv:
     python3 -m venv venv
     ./venv/bin/pip install -r requirements.txt
 
-# configure local system
-local-build: venv
-    ./venv/bin/python builder.py build
-
-# unconfigure local system
-local-unbuild: venv
-    ./venv/bin/python builder.py unbuild
-
 # configure st
 local-st: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-st.yaml --vault-password-file .ansible_vault
