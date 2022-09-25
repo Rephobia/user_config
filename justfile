@@ -13,8 +13,11 @@ local-build: venv
 local-unbuild: venv
     ./venv/bin/python builder.py unbuild
 
+# configure st
 local-st: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-st.yaml --vault-password-file .ansible_vault
+
+# configure cli (.bashrc, .inputrc)
 local-cli: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-cli.yaml --vault-password-file .ansible_vault
 
