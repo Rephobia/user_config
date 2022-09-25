@@ -1,0 +1,10 @@
+---
+- name: Copy cli config files
+  hosts:
+    - localhost
+  tasks:
+    - name: Copy files to home directory
+      copy:
+        src: "{{item }}"
+        dest: "{{ ansible_env.HOME }}"
+      loop: "{{ lookup('fileglob', 'cli/.*', wantlist=True) }}"
