@@ -18,3 +18,5 @@ export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$P
 
 # Add $HOME/.cargo/bin to path binaries
 export PATH="$PATH:$HOME/.cargo/bin"
+
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
