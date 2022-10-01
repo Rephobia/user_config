@@ -7,33 +7,37 @@ venv:
     python3 -m venv venv
     ./venv/bin/pip install -r requirements.txt
 
+# run playbook by name
+playbook playbook: venv
+    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault
+
 # configure st
-local-st: venv
-    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-st.yaml --vault-password-file .ansible_vault
+local-st:
+    just playbook local-st
 
 # configure cli (.bashrc, .inputrc)
-local-cli: venv
-    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-cli.yaml --vault-password-file .ansible_vault
+local-cli:
+    just playbook local-cli
 
 # configure i3wm
-local-i3: venv
-    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/local-i3.yaml --vault-password-file .ansible_vault
+local-i3:
+    just playbook local-i3
 
 # run all local playbooks
 local-all:
-    local-st
-    local-cli
-    local-i3
+    just local-st
+    just local-cli
+    just local-i3
 
 # configure qbittorrent on nas
-nas-qbittorrent: venv
-    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-qbittorrent.yaml --vault-password-file .ansible_vault
+nas-qbittorrent:
+    just playbook nas-qbittorrent
 
 # configure samba on nas
 nas-samba: venv
-    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/nas-samba.yaml --vault-password-file .ansible_vault
+    just playbook nas-samba
 
 # run all nas playbooks
 nas-all:
-    nas-qbittorrent
-    nas-samba
+    just nas-qbittorrent
+    just nas-samba
