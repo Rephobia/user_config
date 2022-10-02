@@ -25,3 +25,11 @@
         src: "{{ playbook_dir }}/files/st/source/st"
         dest: "{{ ansible_env.HOME }}/.local/bin"
         mode: "0775"
+
+    - name: Clean st directory after compile
+      ansible.builtin.command: "{{ item }}"
+      args:
+        chdir: "{{ playbook_dir }}/files/st/source/"
+      loop:
+        - git checkout .
+        - git clean -f
