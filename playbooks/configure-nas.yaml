@@ -9,19 +9,19 @@
 
 - name: Ensure service user exists
   user:
-    name: "{{ nas_qbittorrent_nox_user }}"
+    name: "{{ nas_user }}"
     comment: qBittorrent nox user
     shell: /usr/sbin/nologin
     system: yes
     state: present
-  register: nas_qbittorrent_nox_user_info
+  register: nas_user_info
 
 - name: Ensure torrent directories exist
   file:
     path: "{{ item }}"
     state: directory
     recurse: yes
-    owner: "{{ nas_qbittorrent_nox_user_info.name }}"
-    group: "{{ nas_qbittorrent_nox_user_info.group }}"
+    owner: "{{ nas_user_info.name }}"
+    group: "{{ nas_user_info.group }}"
   loop:
     "{{ nas_torrent_directories }}"

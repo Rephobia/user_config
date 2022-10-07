@@ -10,7 +10,7 @@ Type=simple
 {% else %}
 Type=exec
 {% endif %}
-User={{ nas_qbittorrent_nox_user }}
+User={{ nas_user }}
 ExecStart=/usr/bin/qbittorrent-nox --webui-port={{ nas_qbittorrent_nox_webui_port | int }}
 
 {% if ansible_facts.packages["qbittorrent-nox"][0]["version"] is version('4.2.0', '<=') %}
