@@ -10,5 +10,4 @@
   roles:
     - role: install-syncthing
       syncthing_user: "{{ nas_user }}"
-      syncthing_port: 8989
 
