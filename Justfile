@@ -37,7 +37,12 @@ nas-qbittorrent:
 nas-samba: venv
     just playbook nas-samba
 
+# configure syncthing on nas
+nas-syncthing: venv
+    just playbook nas-syncthing
+
 # run all nas playbooks
 nas-all:
     just nas-qbittorrent
     just nas-samba
+    just nas-syncthing

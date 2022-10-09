@@ -1,0 +1,6 @@
+---
+# handlers file for install-syncthing
+- name: restart syncthing
+  service:
+    name: syncthing
+    state: restarted

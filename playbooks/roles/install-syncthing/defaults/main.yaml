@@ -1,0 +1,5 @@
+# default vars for install-syncthing
+---
+
+syncthing_host: "{{ ansible_host }}"
+syncthing_port: 8384

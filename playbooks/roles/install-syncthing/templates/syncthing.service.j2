@@ -1,0 +1,15 @@
+[Unit]
+Description=syncthing service
+Documentation=man:syncthing
+
+[Service]
+{% if ansible_facts.packages["systemd"][0]["version"] is version('240', '<=') %}
+Type=simple
+{% else %}
+Type=exec
+{% endif %}
+User={{ syncthing_user }}
+ExecStart=/usr/bin/syncthing -gui-address={{ syncthing_host }}:{{ syncthing_port }}
+
+[Install]
+WantedBy=multi-user.target

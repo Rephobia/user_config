@@ -1,0 +1,33 @@
+---
+# tasks file for install-syncthing
+- name: Ensure package is installed
+  ansible.builtin.package:
+    name: syncthing
+    state: present
+
+- name: Return information about installed packages as facts.
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Ensure systemd unit file is present
+  template:
+    src: syncthing.service.j2
+    dest: /etc/systemd/system/syncthing.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart syncthing
+  when: "ansible_service_mgr == 'systemd'"
+
+- name: Start syncthing
+  service:
+    name: syncthing
+    state: started
+
+- name: Ensure service is enabled at boot
+  systemd:
+    name: syncthing
+    enabled: yes
+    daemon_reload: yes
+  when: "ansible_service_mgr == 'systemd'"
