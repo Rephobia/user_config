@@ -7,6 +7,7 @@ Role Variables
 --------------
 
 | Variable                       | Default                  | Comments                                                                                         |
+| :---                           | :---                     | :---                                                                                             |
 | `syncthing_user`               | -                        | user on whose behalf syncthing will run, user also must be able to write/read shared directories |
 | `syncthing_host`               | ansible_host             | host for syncthing web-gui                                                                       |
 | `syncthing_port`               | 8384                     | port for syncthing web-gui                                                                       |
