@@ -14,14 +14,23 @@
     shell: /usr/sbin/nologin
     system: yes
     state: present
-  register: nas_user_info
 
 - name: Ensure torrent directories exist
   file:
     path: "{{ item }}"
     state: directory
     recurse: yes
-    owner: "{{ nas_user_info.name }}"
-    group: "{{ nas_user_info.group }}"
+    owner: "{{ nas_user }}"
+    group: "{{ nas_user }}"
   loop:
     "{{ nas_torrent_directories }}"
+
+- name: Ensure syncthing directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: "{{ nas_user }}"
+    group: "{{ nas_user }}"
+  loop:
+    "{{ nas_syncthing_directories }}"
