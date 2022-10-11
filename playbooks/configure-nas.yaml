@@ -10,12 +10,12 @@
 - name: Ensure service user exists
   user:
     name: "{{ nas_user }}"
-    comment: qBittorrent nox user
+    comment: nas nologin user for demons
     shell: /usr/sbin/nologin
     system: yes
     state: present
 
-- name: Ensure torrent directories exist
+- name: Ensure nas directories exist
   file:
     path: "{{ item }}"
     state: directory
@@ -23,14 +23,4 @@
     owner: "{{ nas_user }}"
     group: "{{ nas_user }}"
   loop:
-    "{{ nas_torrent_directories }}"
-
-- name: Ensure syncthing directories exist
-  file:
-    path: "{{ item }}"
-    state: directory
-    recurse: yes
-    owner: "{{ nas_user }}"
-    group: "{{ nas_user }}"
-  loop:
-    "{{ nas_syncthing_directories }}"
+    "{{ nas_torrent_directories + nas_syncthing_directories }}"
