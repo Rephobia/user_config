@@ -38,7 +38,7 @@ nas-samba: venv
     just playbook nas-samba
 
 # configure syncthing on nas
-nas-syncthing: venv
+nas-syncthing:
     just playbook nas-syncthing
 
 # run all nas playbooks
