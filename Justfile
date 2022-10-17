@@ -23,18 +23,23 @@ local-cli:
 local-i3:
     just playbook local-i3
 
+# configure gpg
+local-gpg:
+    just playbook local-gpg
+
 # run all local playbooks
 local-all:
     just local-st
     just local-cli
     just local-i3
+    just local-gpg
 
 # configure qbittorrent on nas
 nas-qbittorrent:
     just playbook nas-qbittorrent
 
 # configure samba on nas
-nas-samba: venv
+nas-samba:
     just playbook nas-samba
 
 # configure syncthing on nas

@@ -1,0 +1,10 @@
+---
+- name: Copy gpg config files
+  hosts:
+    - localhost
+  tasks:
+    - name: Copy files to gpg directory
+      ansible.builtin.copy:
+        src: "{{item }}"
+        dest: "{{ localhost_gpg_directory }}"
+      loop: "{{ lookup('fileglob', 'gpg/*', wantlist=True) }}"

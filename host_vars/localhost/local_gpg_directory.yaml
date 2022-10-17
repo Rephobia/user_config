@@ -1,0 +1,2 @@
+---
+localhost_gpg_directory: "{{ ansible_env.HOME }}/.gnupg/"
