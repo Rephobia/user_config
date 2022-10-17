@@ -12,27 +12,27 @@ playbook playbook: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault
 
 # configure st
-local-st:
-    just playbook local-st
+localhost-st:
+    just playbook localhost-st
 
 # configure cli (.bashrc, .inputrc)
-local-cli:
-    just playbook local-cli
+localhost-cli:
+    just playbook localhost-cli
 
 # configure i3wm
-local-i3:
-    just playbook local-i3
+localhost-i3:
+    just playbook localhost-i3
 
 # configure gpg
-local-gpg:
-    just playbook local-gpg
+localhost-gpg:
+    just playbook localhost-gpg
 
-# run all local playbooks
-local-all:
-    just local-st
-    just local-cli
-    just local-i3
-    just local-gpg
+# run all localhost playbooks
+localhost-all:
+    just localhost-st
+    just localhost-cli
+    just localhost-i3
+    just localhost-gpg
 
 # configure qbittorrent on nas
 nas-qbittorrent:
