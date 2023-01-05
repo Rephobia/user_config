@@ -1,8 +1,21 @@
 # system init
-exec "sleep 1; setxkbmap -layout us,ru -option grp:caps_toggle" # wth ubuntu 22.04, need sleep 1. Mb gnome try to remap caps lock
+exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_toggle" # wth ubuntu 22.04, need sleep 1. Mb gnome try to remap caps lock
 exec --no-startup-id compton -b
 exec_always feh --bg-scale ~/.config/i3/wallpapers/ign_unsplash8.png
 exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 1920x1080 --rate 144
+
+# pulseaudio-issue 'Pulse overwrites ALSA settings'
+#
+# Description:
+# https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Pulse_overwrites_ALSA_settings
+# PulseAudio usually overwrites the ALSA settings — for example set with alsamixer — at start-up,
+# even when the ALSA daemon is loaded. Since there seems to be no other way to restrict this behaviour,
+# a workaround is to restore the ALSA settings again after PulseAudio has started.
+#
+# Solution:
+# Change config by alasamixer or pavucontrol, store alsa config in ~/.config/asound.state,
+# and always restore setting by config file when i3 started/restarted
+exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 
 # run
 bindcode 133 exec dmenu_run
