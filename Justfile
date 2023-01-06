@@ -27,12 +27,17 @@ localhost-i3:
 localhost-gpg:
     just playbook localhost-gpg
 
+# configure dmenu
+localhost-dmenu:
+    just playbook localhost-dmenu
+
 # run all localhost playbooks
 localhost-all:
     just localhost-st
     just localhost-cli
     just localhost-i3
     just localhost-gpg
+    just localhost-dmenu
 
 # configure qbittorrent on nas
 nas-qbittorrent:

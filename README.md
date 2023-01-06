@@ -13,6 +13,7 @@ localhost-st      # configure st
 localhost-cli     # configure cli (.bashrc, .inputrc)
 localhost-i3      # configure i3wm
 localhost-gpg     # configure gpg
+localhost-dmenu   # configure dmenu
 localhost-all     # run all localhost playbooks
 nas-qbittorrent   # configure qbittorrent on nas
 nas-samba         # configure samba on nas
