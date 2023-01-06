@@ -13,7 +13,9 @@ exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 
 # a workaround is to restore the ALSA settings again after PulseAudio has started.
 #
 # Solution:
-# Change config by alasamixer or pavucontrol, store alsa config in ~/.config/asound.state,
+# Change config by alasamixer or pavucontrol,
+# store alsa config by command 'sudo alsactl store'
+# copy config to home directory 'cp /var/lib/alsa/asound.state ~/.config/asound.state'
 # and always restore setting by config file when i3 started/restarted
 exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 
