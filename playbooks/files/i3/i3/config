@@ -1,8 +1,9 @@
 # system init
-exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_toggle" # wth ubuntu 22.04, need sleep 1. Mb gnome try to remap caps lock
+exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_toggle" # wtf ubuntu 22.04, need sleep 1. Mb gnome try to remap caps lock
 exec --no-startup-id compton -b
 exec_always feh --bg-scale ~/.config/i3/wallpapers/ign_unsplash8.png
 exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 1920x1080 --rate 144
+exec_always --no-startup-id ~/.cargo/bin/i3wsr
 
 # pulseaudio-issue 'Pulse overwrites ALSA settings'
 #
@@ -20,7 +21,7 @@ exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 
 exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 
 # run
-bindcode 133 exec dmenu_run
+bindcode 133 exec dmenu_run_with_history
 bindsym $mod+Return exec st
 bindsym Print exec flameshot gui
 
@@ -39,48 +40,12 @@ floating_modifier mod4
 # focus
 bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
-bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash.py"
-bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/scripts/toggle_stash_move.py"
-bindsym $mod+e exec --no-startup-id "~/.cargo/bin/wmfocus --exit-keys Control_L+g -c ertdf --halign center --valign center -f 'Droid Sans':100 --bgcolor 'rgba(50, 50, 50, 0.7)' --textcolor 'rgba(255, 255, 255, 1)' --fill"
+bindsym $mod+Shift+Tab workspace back_and_forth
 
-mode "stash"{
-     bindsym 1 workspace 1*; mode "default"
-     bindsym 2 workspace 2*; mode "default"
-     bindsym 3 workspace 3*; mode "default"
-     bindsym 4 workspace 4*; mode "default"
-     bindsym 5 workspace 5*; mode "default"
-     bindsym 6 workspace 6*; mode "default"
-     bindsym 7 workspace 7*; mode "default"
-     bindsym 8 workspace 8*; mode "default"
-     bindsym 9 workspace 9*; mode "default"
-     bindsym 0 workspace 10*; mode "default"
-     bindsym t workspace t*; mode "default"
-     bindsym d workspace d*; mode "default"
-     bindsym m workspace m*; mode "default"
-     bindsym w workspace w*; mode "default"
-     bindsym a workspace a*; mode "default"
-
-     bindsym Shift+1 move container to workspace 1*; mode "default"
-     bindsym Shift+2 move container to workspace 2*; mode "default"
-     bindsym Shift+3 move container to workspace 3*; mode "default"
-     bindsym Shift+4 move container to workspace 4*; mode "default"
-     bindsym Shift+5 move container to workspace 5*; mode "default"
-     bindsym Shift+6 move container to workspace 6*; mode "default"
-     bindsym Shift+7 move container to workspace 7*; mode "default"
-     bindsym Shift+8 move container to workspace 8*; mode "default"
-     bindsym Shift+9 move container to workspace 9*; mode "default"
-     bindsym Shift+0 move container to workspace 10*; mode "default"
-     bindsym Shift+t move container to workspace t*; mode "default"
-     bindsym Shift+d move container to workspace d*; mode "default"
-     bindsym Shift+m move container to workspace m*; mode "default"
-     bindsym Shift+w move container to workspace w*; mode "default"
-     bindsym Shift+a move container to workspace a*; mode "default"
-
-     bindsym Return mode "default"
-     bindsym Escape mode "default"
-     bindsym Ctrl+g mode "default"
-     bindsym $mod+grave mode "default"
-}
+bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_workspace_focus.py"
+bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_workspace_move.py"
+bindsym $mod+e exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_stash_focus.py"
+bindsym $mod+Shift+e exec --no-startup-id "python3 ~/.config/i3/scripts/stash_move.py"
 
 mode "layout" {
      bindsym t layout tabbed; mode "default"
@@ -94,7 +59,6 @@ mode "layout" {
 }
 
 mode "command" {
-     bindsym s mode "stash"
      bindsym l mode "layout"
 
      bindsym 1 workspace 1; mode "default"
