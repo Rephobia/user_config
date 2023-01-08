@@ -3,7 +3,7 @@ exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_t
 exec --no-startup-id compton -b
 exec_always feh --bg-scale ~/.config/i3/wallpapers/ign_unsplash8.png
 exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 1920x1080 --rate 144
-exec_always --no-startup-id ~/.cargo/bin/i3wsr
+exec_always --no-startup-id ~/.cargo/bin/i3wsr --config ~/.config/i3wsr/config.toml
 
 # pulseaudio-issue 'Pulse overwrites ALSA settings'
 #
