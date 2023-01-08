@@ -11,3 +11,8 @@
         - "{{ playbook_dir }}/files/i3/i3"
         - "{{ playbook_dir }}/files/i3/i3status"
 
+    - name: Changing perm of script files, adding "+x"
+      file:
+        path: "{{ ansible_env.HOME }}/.config/i3/scripts"
+        mode: a+x
+        recurse: true

@@ -42,10 +42,10 @@ bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
 bindsym $mod+Shift+Tab workspace back_and_forth
 
-bindsym $mod+w exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_workspace_focus.py"
-bindsym $mod+Shift+w exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_workspace_move.py"
-bindsym $mod+e exec --no-startup-id "python3 ~/.config/i3/scripts/dmenu_stash_focus.py"
-bindsym $mod+Shift+e exec --no-startup-id "python3 ~/.config/i3/scripts/stash_move.py"
+bindsym $mod+w exec --no-startup-id "~/.config/i3/scripts/dmenu_workspace_focus.py"
+bindsym $mod+Shift+w exec --no-startup-id "~/.config/i3/scripts/dmenu_workspace_move.py"
+bindsym $mod+e exec --no-startup-id "~/.config/i3/scripts/dmenu_stash_focus.py"
+bindsym $mod+Shift+e exec --no-startup-id "~/.config/i3/scripts/stash_move.py"
 
 mode "layout" {
      bindsym t layout tabbed; mode "default"
@@ -144,7 +144,7 @@ bindsym $mod+grave mode "command"
 bindsym $mod+m fullscreen
 
 # scratchpad
-bindsym $mod+minus exec "python3 ~/.config/i3/scripts/fullscreen_scratchpad.py"
+bindsym $mod+minus exec "~/.config/i3/scripts/fullscreen_scratchpad.py"
 
 set $major_text #eeeeec
 set $minor_text #555753
