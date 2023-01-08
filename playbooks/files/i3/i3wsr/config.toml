@@ -7,7 +7,7 @@ beekeeper-studio = "beekeeper"
 Skype = "skype"
 
 [general]
-separator = ":"
+separator = "|"
 wm_property = "class"
 
 [options]
