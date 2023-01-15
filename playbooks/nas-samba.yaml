@@ -17,8 +17,9 @@
          password: "{{ nas_samba_user_password }}"
 
      samba_shares:
-       - name: "{{ nas_samba_shares_torrent_name}}"
+       - name: "{{ nas_samba_shares_name }}"
          valid_users: "{{ nas_user }}"
          write_list: "{{ nas_user }}"
          group: "{{ nas_user }}"
-         browseable: 'no'
+         browseable: "no"
+         path: "{{ nas_samba_shares_root }}"
