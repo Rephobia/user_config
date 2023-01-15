@@ -1,0 +1,12 @@
+---
+- name: Configure syncthing on localhost
+  hosts:
+    - localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  become: yes
+  roles:
+    - role: install-syncthing
+      syncthing_user: "{{ lookup('env','USER') }}"
