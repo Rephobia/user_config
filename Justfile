@@ -7,6 +7,10 @@ venv:
     python3 -m venv venv
     ./venv/bin/pip install -r requirements.txt
 
+# manipulate vault files
+vault-file command path:
+    ./venv/bin/ansible-vault {{command}} {{path}} --vault-password-file .ansible_vault
+
 # run playbook by name
 playbook playbook: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault
