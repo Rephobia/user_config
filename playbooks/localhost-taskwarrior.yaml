@@ -1,0 +1,15 @@
+---
+- name: Install taskwarrior
+  hosts:
+    - localhost
+  tasks:
+    - name: Ensure package is installed
+      package:
+        name: taskwarrior
+        state: present
+
+    - name: Copy config files to home directory
+      ansible.builtin.copy:
+        src: "{{item }}"
+        dest: "{{ ansible_env.HOME }}"
+      loop: "{{ lookup('fileglob', 'taskwarrior/.*', wantlist=True) }}"
