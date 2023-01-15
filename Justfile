@@ -35,6 +35,14 @@ localhost-gpg:
 localhost-dmenu:
     just playbook localhost-dmenu
 
+# configure taskwarrior
+localhost-taskwarrior:
+    just playbook localhost-taskwarrior
+
+# configure syncthing
+localhost-syncthing:
+    just playbook localhost-syncthing
+
 # run all localhost playbooks
 localhost-all:
     just localhost-st
