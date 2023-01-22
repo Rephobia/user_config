@@ -20,3 +20,5 @@ export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$P
 export PATH="$PATH:$HOME/.cargo/bin"
 
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+alias t="task"
