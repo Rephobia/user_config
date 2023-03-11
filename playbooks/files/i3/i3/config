@@ -3,7 +3,6 @@ exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_t
 exec --no-startup-id compton -b
 exec_always feh --bg-scale ~/.config/i3/wallpapers/ign_unsplash8.png
 exec_always --no-startup-id ~/.config/i3/scripts/initialize/set_hertz.py --mode 1920x1080 --rate 144
-exec_always --no-startup-id ~/.cargo/bin/i3wsr --config ~/.config/i3wsr/config.toml
 
 # pulseaudio-issue 'Pulse overwrites ALSA settings'
 #
@@ -42,56 +41,42 @@ bindsym Shift+Tab focus left
 bindsym $mod+Tab focus right
 bindsym $mod+Shift+Tab workspace back_and_forth
 
-bindsym $mod+w exec --no-startup-id "~/.config/i3/scripts/dmenu_workspace_focus.py"
-bindsym $mod+Shift+w exec --no-startup-id "~/.config/i3/scripts/dmenu_workspace_move.py"
-bindsym $mod+e exec --no-startup-id "~/.config/i3/scripts/dmenu_stash_focus.py"
-bindsym $mod+Shift+e exec --no-startup-id "~/.config/i3/scripts/stash_move.py"
-
-mode "layout" {
-     bindsym t layout tabbed; mode "default"
-     bindsym s layout stacking; mode "default"
-     bindsym l layout toggle split; mode "default"
-
+mode "stub" {
      bindsym Return mode "default"
      bindsym Escape mode "default"
      bindsym Ctrl+g mode "default"
      bindsym $mod+grave mode "default"
 }
 
+mode "layout" {
+     bindsym t layout tabbed; mode "stub"
+     bindsym s layout stacking; mode "stub"
+     bindsym l layout toggle split; mode "stub"
+
+     bindsym Return mode "stub"
+     bindsym Escape mode "stub"
+     bindsym Ctrl+g mode "stub"
+     bindsym $mod+grave mode "stub"
+}
+
 mode "command" {
      bindsym l mode "layout"
+     bindsym 1 mode "default"
+     bindsym 2 mode "main"
+     bindsym 3 mode "sec"
+     bindsym t workspace 11:command:t; mode "stub"
+     bindsym d workspace 12:command:d; mode "stub"
+     bindsym m workspace 13:command:m; mode "stub"
+     bindsym b workspace 14:command:b; mode "stub"
+     bindsym a workspace 15:command:a; mode "stub"
 
-     bindsym 1 workspace 1; mode "default"
-     bindsym 2 workspace 2; mode "default"
-     bindsym 3 workspace 3; mode "default"
-     bindsym 4 workspace 4; mode "default"
-     bindsym 5 workspace 5; mode "default"
-     bindsym 6 workspace 6; mode "default"
-     bindsym 7 workspace 7; mode "default"
-     bindsym 8 workspace 8; mode "default"
-     bindsym 9 workspace 9; mode "default"
-     bindsym 0 workspace 10; mode "default"
-     bindsym t workspace t; mode "default"
-     bindsym d workspace d; mode "default"
-     bindsym m workspace m; mode "default"
-     bindsym w workspace w; mode "default"
-     bindsym a workspace a; mode "default"
+     bindsym s mode "stub"
 
-     bindsym Shift+1 move container to workspace 1; mode "default"
-     bindsym Shift+2 move container to workspace 2; mode "default"
-     bindsym Shift+3 move container to workspace 3; mode "default"
-     bindsym Shift+4 move container to workspace 4; mode "default"
-     bindsym Shift+5 move container to workspace 5; mode "default"
-     bindsym Shift+6 move container to workspace 6; mode "default"
-     bindsym Shift+7 move container to workspace 7; mode "default"
-     bindsym Shift+8 move container to workspace 8; mode "default"
-     bindsym Shift+9 move container to workspace 9; mode "default"
-     bindsym Shift+0 move container to workspace 10; mode "default"
-     bindsym Shift+t move container to workspace t; mode "default"
-     bindsym Shift+d move container to workspace d; mode "default"
-     bindsym Shift+m move container to workspace m; mode "default"
-     bindsym Shift+w move container to workspace w; mode "default"
-     bindsym Shift+a move container to workspace a; mode "default"
+     bindsym Shift+t move container to workspace 11:command:t; mode "stub"
+     bindsym Shift+d move container to workspace 12:command:d; mode "stub"
+     bindsym Shift+m move container to workspace 13:command:m; mode "stub"
+     bindsym Shift+b move container to workspace 14:command:b; mode "stub"
+     bindsym Shift+a move container to workspace 15:command:a; mode "stub"
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -103,7 +88,7 @@ mode "command" {
 
      bindsym $mod+p focus parent
      bindsym $mod+c focus child
-     
+
      #resize
      bindsym Ctrl+j resize shrink width 5 px or 5 ppt
      bindsym Ctrl+k resize grow height 5 px or 5 ppt
@@ -117,29 +102,72 @@ mode "command" {
      bindsym $mod+Shift+l move right
 
      # split in horizontal/vertical orientation
-     bindsym h split h; mode "default"
-     bindsym v split v; mode "default"
+     bindsym h split h; mode "stub"
+     bindsym v split v; mode "stub"
 
      # toggle tiling / floating
-     bindsym f floating toggle; mode "default"
+     bindsym f floating toggle; mode "stub"
 
      # change focus between tiling / floating windows
      bindsym Shift+f focus mode_toggle
 
      bindsym r reload
      bindsym Shift+r restart
-     bindsym k kill; mode "default"
+     bindsym k kill; mode "stub"
 
-     bindsym minus move scratchpad; mode "default"
-     bindsym Shift+minus floating toggle; fullscreen; mode "default"
+     bindsym minus move scratchpad; mode "stub"
+     bindsym Shift+minus floating toggle; fullscreen; mode "stub"
 
-     bindsym Return mode "default"
-     bindsym Escape mode "default"
-     bindsym Ctrl+g mode "default"
-     bindsym $mod+grave mode "default"
+     bindsym Return mode "stub"
+     bindsym Escape mode "stub"
+     bindsym Ctrl+g mode "stub"
+     bindsym $mod+grave mode "stub"
 }
 
 bindsym $mod+grave mode "command"
+
+bindsym $mod+w workspace 1:default:w;
+bindsym $mod+e workspace 2:default:e;
+bindsym $mod+r workspace 3:default:r;
+bindsym $mod+Shift+w move container to workspace 1:default:w;
+bindsym $mod+Shift+e move container to workspace 2:default:e;
+bindsym $mod+Shift+r move container to workspace 3:default:r;
+
+mode "main" {
+     bindcode 133 exec dmenu_run_with_history
+
+     bindsym Shift+Tab focus left
+     bindsym $mod+Tab focus right
+     bindsym $mod+Shift+Tab workspace back_and_forth
+
+     bindsym $mod+w workspace 1:main:w;
+     bindsym $mod+e workspace 2:main:e;
+     bindsym $mod+r workspace 3:main:r;
+     bindsym $mod+Shift+w move container to workspace 1:main:w;
+     bindsym $mod+Shift+e move container to workspace 2:main:e;
+     bindsym $mod+Shift+r move container to workspace 3:main:r;
+
+     bindsym $mod+grave mode "command"
+     bindsym $mod+m fullscreen
+}
+
+mode "sec" {
+     bindcode 133 exec dmenu_run_with_history
+
+     bindsym Shift+Tab focus left
+     bindsym $mod+Tab focus right
+     bindsym $mod+Shift+Tab workspace back_and_forth
+
+     bindsym $mod+w workspace 1:sec:w;
+     bindsym $mod+e workspace 2:sec:e;
+     bindsym $mod+e workspace 3:sec:r;
+     bindsym $mod+Shift+w move container to workspace 1:sec:w;
+     bindsym $mod+Shift+e move container to workspace 2:sec:e;
+     bindsym $mod+Shift+r move container to workspace 3:sec:r;
+
+     bindsym $mod+grave mode "command"
+     bindsym $mod+m fullscreen
+}
 
 bindsym $mod+m fullscreen
 
@@ -157,6 +185,8 @@ client.focused   $background $background $major_text #000000 $background
 client.unfocused $background $background $minor_text #000000 $background
 
 bar {
+    workspace_command ~/.config/i3/scripts/render_i3bar.sh
+
     status_command i3status
     mode dock
     separator_symbol " | "
@@ -166,7 +196,7 @@ bar {
            background $background
            statusline #888a85
            separator  $background
-	   
+
            #class             #border     #backgr     #text
            focused_workspace  $background $background $major_text
            active_workspace   #ffffff     #ffffff     $minor_text
