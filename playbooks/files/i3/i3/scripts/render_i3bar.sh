@@ -10,7 +10,8 @@ STUB="stub"
 
 # Set default workspace name
 DEFAULT_WORKSPACE="w"
-
+declare -A WORKSPACE_MODE_HISTORY
+WORKSPACE_MODE_HISTORY[$MODE]="1:"$MODE":"$DEFAULT_WORKSPACE
 # Initialize block focus flag
 BLOCK_FOCUS=0
 
@@ -30,12 +31,25 @@ rename_workspaces() {
 # Function to switch to first workspace with current mode name, or create new one if none exist
 switch_workspace() {
     # Use jq to select first workspace with current mode name, or default workspace name
-    local workspace=$(echo "$1" | jq --unbuffered -r ".[] | select(.name|test(\"^[0-9]+:$MODE:.+\")).name" | head -1)
+    local history_workspace=$(get_history_workspace)
+    local workspace=$(echo "$1" | jq --unbuffered -r ".[] | select(.name == \"$history_workspace\").name" | head -1)
+
     if [[ -z $workspace ]]; then
         workspace="1:$MODE:$DEFAULT_WORKSPACE"
     fi
     # Switch to selected workspace
     i3-msg -q workspace "$workspace"
+}
+
+# Get current mode history workspace, return value without quotes
+get_history_workspace() {
+    local history_workspace="${WORKSPACE_MODE_HISTORY[$MODE]//\"}"
+    echo $history_workspace
+}
+
+# Save workspace to to history
+save_workspace_to_history() {
+    WORKSPACE_MODE_HISTORY[$MODE]=$(echo "$1" | jq --unbuffered -c ".[] | select(.focused).name")
 }
 
 # Function to handle changes to mode
@@ -47,6 +61,7 @@ handle_mode_change() {
             BLOCK_FOCUS=1
             i3-msg -q mode $MODE
         else
+	    save_workspace_to_history "$2"
             # Otherwise, update mode, and switch to appropriate workspace if block focus flag is not set
             MODE=$(echo "$1" | jq -r '.change')
             if [[ $BLOCK_FOCUS == 0 ]]; then
