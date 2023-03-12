@@ -10,7 +10,6 @@
       loop:
         - "{{ playbook_dir }}/files/i3/i3"
         - "{{ playbook_dir }}/files/i3/i3status"
-        - "{{ playbook_dir }}/files/i3/i3wsr"
 
     - name: Changing perm of script files, adding "+x"
       file:
