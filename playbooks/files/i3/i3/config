@@ -70,13 +70,13 @@ mode "command" {
      bindsym b workspace 14:command:b; mode "stub"
      bindsym a workspace 15:command:a; mode "stub"
 
-     bindsym s mode "stub"
-
      bindsym Shift+t move container to workspace 11:command:t; mode "stub"
      bindsym Shift+d move container to workspace 12:command:d; mode "stub"
      bindsym Shift+m move container to workspace 13:command:m; mode "stub"
      bindsym Shift+b move container to workspace 14:command:b; mode "stub"
      bindsym Shift+a move container to workspace 15:command:a; mode "stub"
+
+     exec_always --no-startup-id alsactl --file ~/.config/i3/scripts/move_to_workspace.sh
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
