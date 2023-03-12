@@ -76,7 +76,7 @@ mode "command" {
      bindsym Shift+b move container to workspace 14:command:b; mode "stub"
      bindsym Shift+a move container to workspace 15:command:a; mode "stub"
 
-     exec_always --no-startup-id alsactl --file ~/.config/i3/scripts/move_to_workspace.sh
+     bindsym $mod+Shift+w exec_always --no-startup-id  ~/.config/i3/scripts/move_to_workspace.sh
 
      bindsym q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Dio you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -135,6 +135,8 @@ bindsym $mod+Shift+r move container to workspace 3:default:r;
 
 mode "main" {
      bindcode 133 exec dmenu_run_with_history
+     bindsym $mod+Return exec st
+     bindsym Print exec flameshot gui
 
      bindsym Shift+Tab focus left
      bindsym $mod+Tab focus right
@@ -153,6 +155,8 @@ mode "main" {
 
 mode "sec" {
      bindcode 133 exec dmenu_run_with_history
+     bindsym $mod+Return exec st
+     bindsym Print exec flameshot gui
 
      bindsym Shift+Tab focus left
      bindsym $mod+Tab focus right
