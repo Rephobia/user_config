@@ -133,7 +133,7 @@ bindsym $mod+Shift+w move container to workspace 1:default:w;
 bindsym $mod+Shift+e move container to workspace 2:default:e;
 bindsym $mod+Shift+r move container to workspace 3:default:r;
 bindsym $mod+equal mode "command"; workspace 16:command:+; mode "default"
-bindsym $mod+plus mode "command"; move container to workspace 16:command:+; mode "default"
+bindsym $mod+Shift+equal mode "command"; move container to workspace 16:command:+; mode "default"
 
 mode "main" {
      bindcode 133 exec dmenu_run_with_history
