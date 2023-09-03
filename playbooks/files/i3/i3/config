@@ -20,7 +20,17 @@ exec_always --no-startup-id ~/.config/i3/scripts/set_hertz.py --mode 1920x1080 -
 exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 
 # run
-bindcode 133 exec dmenu_run_with_history
+mode "dmenu" {
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+     bindsym Ctrl+g mode "default"
+     bindsym $mod+grave mode "default"
+     bindcode 133 exec dmenu_run_with_history; mode "default"
+     bindsym p exec passmenu; mode "default"
+}
+
+bindcode 133 mode "dmenu"
+
 bindsym $mod+Return exec st
 bindsym Print exec flameshot gui
 

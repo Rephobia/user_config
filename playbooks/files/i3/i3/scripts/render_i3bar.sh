@@ -4,6 +4,7 @@
 MODE="default"
 COMMAND="command"
 LAYOUT="layout"
+DMENU="dmenu"
 
 # A stub mode, used to block the script from changing workspace focus
 STUB="stub"
@@ -55,7 +56,7 @@ save_workspace_to_history() {
 # Function to handle changes to mode
 handle_mode_change() {
     # Check if event contains a "change" key, is not a command mode, or layout mode, and has length of 2
-    if [[ $(echo "$1" | jq 'has("change")') && $(echo "$1" | jq 'length') == 2 && $(echo "$1" | jq -r '.change') != $COMMAND && $(echo "$1" | jq -r '.change') != $LAYOUT ]]; then
+    if [[ $(echo "$1" | jq 'has("change")') && $(echo "$1" | jq 'length') == 2 && $(echo "$1" | jq -r '.change') != $COMMAND && $(echo "$1" | jq -r '.change') != $LAYOUT && $(echo "$1" | jq -r '.change') != $DMENU]]; then
         # If "change" key is set to "stub", block the script from changing workspace focus
         if [[ $(echo "$1" | jq -r '.change') == $STUB ]]; then
             BLOCK_FOCUS=1
