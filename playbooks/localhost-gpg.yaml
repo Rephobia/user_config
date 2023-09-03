@@ -8,3 +8,5 @@
         src: "{{item }}"
         dest: "{{ localhost_gpg_directory }}"
       loop: "{{ lookup('fileglob', 'gpg/*', wantlist=True) }}"
+    - name: Restart gpg-agent
+      shell: gpgconf --kill gpg-agent
