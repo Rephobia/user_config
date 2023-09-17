@@ -70,6 +70,8 @@ mode "command" {
      bindsym b workspace 14:command:b; mode "stub"
      bindsym a workspace 15:command:a; mode "stub"
 
+     bindsym p exec dmenu_passmenu; mode "stub"
+
      bindsym Shift+t move container to workspace 11:command:t; mode "stub"
      bindsym Shift+d move container to workspace 12:command:d; mode "stub"
      bindsym Shift+m move container to workspace 13:command:m; mode "stub"
