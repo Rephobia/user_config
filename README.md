@@ -15,7 +15,7 @@ localhost-cli           # configure cli (.bashrc, .inputrc)
 localhost-i3            # configure i3wm
 localhost-gpg           # configure gpg
 localhost-dmenu         # configure dmenu
-localhost-taskwarrior   # configure taskwarrior
+localhost-samba         # configure samba
 localhost-syncthing     # configure syncthing
 localhost-all           # run all localhost playbooks
 nas-qbittorrent         # configure qbittorrent on nas
