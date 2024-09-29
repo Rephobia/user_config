@@ -43,6 +43,10 @@ localhost-taskwarrior:
 localhost-syncthing:
     just playbook localhost-syncthing
 
+# configure samba
+localhost-samba:
+    just playbook localhost-samba
+
 # run all localhost playbooks
 localhost-all:
     just localhost-st
@@ -50,6 +54,7 @@ localhost-all:
     just localhost-i3
     just localhost-gpg
     just localhost-dmenu
+    just localhost-samba
 
 # configure qbittorrent on nas
 nas-qbittorrent:
