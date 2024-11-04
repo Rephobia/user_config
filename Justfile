@@ -15,6 +15,10 @@ vault-file command path:
 playbook playbook: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault
 
+# run playbook by name with tags
+playbook-with-tags playbook tags: venv
+    ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault -t {{tags}}
+
 # configure st
 localhost-st:
     just playbook localhost-st
@@ -23,9 +27,13 @@ localhost-st:
 localhost-cli:
     just playbook localhost-cli
 
-# configure i3wm
-localhost-i3:
-    just playbook localhost-i3
+# configure i3wm with desktop i3bar
+localhost-i3-desktop:
+    just playbook-with-tags localhost-i3 desktop
+    
+# configure i3wm with laptop i3bar
+localhost-i3-laptop:
+    just playbook-with-tags localhost-i3 laptop
 
 # configure gpg
 localhost-gpg:

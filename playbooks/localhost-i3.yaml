@@ -2,8 +2,6 @@
 - name: Copy i3wm config files
   hosts:
     - localhost
-  become: yes
-  no_log: true
   vars_prompt:
     - name: "ansible_become_pass"
       prompt: "Sudo password"
@@ -13,17 +11,30 @@
       package:
         name: feh
         state: present
-        
-    - name: Copy i3wm to .config directory
+      become: yes
+      tags: laptop, desktop
+
+    - name: Copy i3wm config
       ansible.builtin.copy:
-        src: "{{ item }}"
+        src: "{{ playbook_dir }}/files/i3/i3"
         dest: "{{ ansible_env.HOME }}/.config/"
-      loop:
-        - "{{ playbook_dir }}/files/i3/i3"
-        - "{{ playbook_dir }}/files/i3/i3status"
+      tags: laptop, desktop
+
+    - name: Copy i3bar for laptop config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/i3/i3status/config-laptop"
+        dest: "{{ ansible_env.HOME }}/.config/i3status/config"
+      tags: laptop
+      
+    - name: Copy i3bar for desktop config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/i3/i3status/config-desktop"
+        dest: "{{ ansible_env.HOME }}/.config/i3status/config"
+      tags: desktop
 
     - name: Changing perm of script files, adding "+x"
       file:
         path: "{{ ansible_env.HOME }}/.config/i3/scripts"
         mode: a+x
         recurse: true
+      tags: laptop, desktop
