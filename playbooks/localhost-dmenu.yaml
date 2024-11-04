@@ -3,7 +3,38 @@
   hosts:
     - localhost
   tasks:
-    - name: Copy dmenu scripts to /usr/local/bin  directory
+    - name: Copy files for compile
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ playbook_dir }}/files/dmenu/source/"
+      loop: "{{ lookup('fileglob', 'dmenu/copy_files/*', wantlist=True) }}"
+
+    - name: Apply patches for dmenu
+      ansible.posix.patch:
+        src: "{{ item }}"
+        basedir: "{{ playbook_dir }}/files/dmenu/source/"
+        strip: 1
+      loop: "{{ lookup('fileglob', 'dmenu/patches/*', wantlist=True) }}"
+
+    - name: Build the default target
+      make:
+        chdir: "{{ playbook_dir }}/files/dmenu/source/"
+
+    - name: Copy dmenu binary to .local/bin
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/dmenu/source/dmenu"
+        dest: "{{ ansible_env.HOME }}/.local/bin"
+        mode: "0775"
+
+    - name: Clean dmenu directory after compile
+      ansible.builtin.command: "{{ item }}"
+      args:
+        chdir: "{{ playbook_dir }}/files/dmenu/source/"
+      loop:
+        - git checkout .
+        - git clean -f
+
+    - name: Copy dmenu scripts to ~/.local/bin  directory
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "~/.local/bin/"

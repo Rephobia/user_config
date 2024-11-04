@@ -1,3 +1,9 @@
 [submodule "playbooks/files/st/source"]
 	path = playbooks/files/st/source
 	url = https://git.suckless.org/st
+[submodule "playbooks/files/dmenu/source"]
+	path = playbooks/files/dmenu/source
+	url = https://git.suckless.org/dmenu
+[submodule "dmenu"]
+	path = dmenu
+	url = https://git.suckless.org/dmenu
