@@ -2,7 +2,18 @@
 - name: Copy i3wm config files
   hosts:
     - localhost
+  become: yes
+  no_log: true
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
   tasks:
+    - name: Ensure feh package is installed
+      package:
+        name: feh
+        state: present
+        
     - name: Copy i3wm to .config directory
       ansible.builtin.copy:
         src: "{{ item }}"
