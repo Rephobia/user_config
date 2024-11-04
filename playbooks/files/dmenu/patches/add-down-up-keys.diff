@@ -1,0 +1,24 @@
+diff --git a/dmenu.c b/dmenu.c
+index 804da64..a61699d 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -356,7 +356,6 @@ keypress(XKeyEvent *ev)
+ 		case XK_M: ksym = XK_Return; ev->state &= ~ControlMask; break;
+ 		case XK_n: ksym = XK_Down;      break;
+ 		case XK_p: ksym = XK_Up;        break;
+-
+ 		case XK_k: /* delete right */
+ 			text[cursor] = '\0';
+ 			match();
+@@ -404,8 +403,9 @@ keypress(XKeyEvent *ev)
+ 		case XK_G: ksym = XK_End;   break;
+ 		case XK_h: ksym = XK_Up;    break;
+ 		case XK_j: ksym = XK_Next;  break;
+-		case XK_k: ksym = XK_Prior; break;
+-		case XK_l: ksym = XK_Down;  break;
++		/* case XK_k: ksym = XK_Prior; break; */
++		case XK_k: ksym = XK_Down;  break;
++		case XK_i: ksym = XK_Up;    break;
+ 		default:
+ 			return;
+ 		}
