@@ -177,6 +177,9 @@ mode "main" {
      bindsym $mod+Shift+e move container to workspace 2:main:e;
      bindsym $mod+Shift+r move container to workspace 3:main:r;
 
+     bindsym $mod+equal mode "command"; workspace 16:command:+; mode "main"
+     bindsym $mod+Shift+equal mode "command"; move container to workspace 16:command:+; mode "main"
+
      bindsym $mod+grave mode "command"
      bindsym $mod+m fullscreen
 }
@@ -196,6 +199,9 @@ mode "sec" {
      bindsym $mod+Shift+w move container to workspace 1:sec:w;
      bindsym $mod+Shift+e move container to workspace 2:sec:e;
      bindsym $mod+Shift+r move container to workspace 3:sec:r;
+
+     bindsym $mod+equal mode "command"; workspace 16:command:+; mode "sec"
+     bindsym $mod+Shift+equal mode "command"; move container to workspace 16:command:+; mode "sec"
 
      bindsym $mod+grave mode "command"
      bindsym $mod+m fullscreen
