@@ -62,7 +62,7 @@ floating_modifier mod4
 
 # focus
 bindsym Shift+Tab focus left
-bindsym $mod+Tab focus right
+bindsym $mod+Tab exec "~/.config/i3/scripts/fullscreen_alt_tab.py"
 bindsym $mod+Shift+Tab workspace back_and_forth
 
 mode "stub" {
@@ -167,7 +167,8 @@ mode "main" {
      bindsym Print exec flameshot gui
 
      bindsym Shift+Tab focus left
-     bindsym $mod+Tab focus right
+     bindsym $mod+Tab exec "~/.config/i3/scripts/fullscreen_alt_tab.py"
+
      bindsym $mod+Shift+Tab workspace back_and_forth
 
      bindsym $mod+w workspace 1:main:w;
@@ -190,7 +191,7 @@ mode "sec" {
      bindsym Print exec flameshot gui
 
      bindsym Shift+Tab focus left
-     bindsym $mod+Tab focus right
+     bindsym $mod+Tab exec "~/.config/i3/scripts/fullscreen_alt_tab.py"
      bindsym $mod+Shift+Tab workspace back_and_forth
 
      bindsym $mod+w workspace 1:sec:w;
