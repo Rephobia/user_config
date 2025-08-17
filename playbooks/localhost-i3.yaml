@@ -7,13 +7,25 @@
       prompt: "Sudo password"
       private: yes
   tasks:
-    - name: Ensure feh package is installed
+    - name: Ensure feh and i3 package is installed
       package:
-        name: feh
+        name:
+          - feh
+          - i3
         state: present
       become: yes
       tags: laptop, desktop
 
+
+    - name: Ensure i3 directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ ansible_env.HOME }}/.config/i3"
+        - "{{ ansible_env.HOME }}/.config/i3status"
+      tags: laptop, desktop 
+     
     - name: Copy i3wm config
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/files/i3/i3"
