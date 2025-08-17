@@ -4,6 +4,7 @@ exec --no-startup-id compton -b
 exec_always feh --bg-scale ~/.config/i3/wallpapers/solaris.png
 exec_always --no-startup-id ~/.config/i3/scripts/set_hertz.py --mode 1920x1080 --rate 144
 exec_always --no-startup-id emacs --daemon
+exec_always --no-startup-id nm-applet
 
 # KDE FIX begin
 
@@ -22,7 +23,7 @@ for_window [class="krunner"] floating enable; border none
 for_window [class="Kmix"] floating enable; border none
 for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
-for_window [class="(?i)*nextcloud*"] floating disable
+# for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] border none, move position 70 ppt 81 ppt
 no_focus [class="plasmashell" window_type="notification"]
 
@@ -43,9 +44,11 @@ no_focus [class="plasmashell" window_type="notification"]
 # and always restore setting by config file when i3 started/restarted
 exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 
+set $mod mod1
+
 # run
 bindcode 133 exec dmenu_run_with_history
-bindsym $mod+Return exec st
+bindsym $mod+Return exec ptyxis --new-window
 bindsym Print exec flameshot gui
 
 # window setting
@@ -55,7 +58,6 @@ for_window [class=".*"] title_format "<b>%class</b>"
 
 hide_edge_borders both
 
-set $mod mod1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier mod4
@@ -196,7 +198,7 @@ mode "sec" {
 
      bindsym $mod+w workspace 1:sec:w;
      bindsym $mod+e workspace 2:sec:e;
-     bindsym $mod+e workspace 3:sec:r;
+     bindsym $mod+r workspace 3:sec:r;
      bindsym $mod+Shift+w move container to workspace 1:sec:w;
      bindsym $mod+Shift+e move container to workspace 2:sec:e;
      bindsym $mod+Shift+r move container to workspace 3:sec:r;
