@@ -2,7 +2,24 @@
 - name: Copy custom dmenu scripts with history support
   hosts:
     - localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  pre_tasks:
+    - name: Configure build tools
+      include_tasks: "{{ item }}"
+      with_items:
+        - configure-build-tools.yaml
+        - configure-x11-build-tools.yaml
   tasks:
+    - name: Clone dmenu sources
+      ansible.builtin.git:
+        repo: https://git.suckless.org/dmenu
+        dest: "{{ playbook_dir }}/files/dmenu/source/"
+        version: "d893c63cdd927c33b9b8c9bc52aaa284199a650a"
+        force: yes
+  
     - name: Copy files for compile
       ansible.builtin.copy:
         src: "{{ item }}"
@@ -19,26 +36,23 @@
     - name: Build the default target
       make:
         chdir: "{{ playbook_dir }}/files/dmenu/source/"
-
+        
+    - name: Ensure ~/.local/bin directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.local/bin/"
+        state: directory
+        
     - name: Copy dmenu binary to .local/bin
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/files/dmenu/source/dmenu"
-        dest: "{{ ansible_env.HOME }}/.local/bin"
+        dest: "{{ ansible_env.HOME }}/.local/bin/"
         mode: "0775"
 
-    - name: Clean dmenu directory after compile
-      ansible.builtin.command: "{{ item }}"
-      args:
-        chdir: "{{ playbook_dir }}/files/dmenu/source/"
-      loop:
-        - git checkout .
-        - git clean -f
-
-    - name: Copy dmenu scripts to ~/.local/bin  directory
+    - name: Copy dmenu scripts to ~/.local/bin directory
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "~/.local/bin/"
         mode: a+x
-      loop:
-        - "{{ playbook_dir }}/files/dmenu/"
+      loop: "{{ lookup('fileglob', 'dmenu/scripts/*', wantlist=True) }}"
+
 

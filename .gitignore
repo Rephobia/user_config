@@ -2,6 +2,8 @@ st/*
 !st/st-workingdir-20200317-51e19ea.diff
 !st-scrollback-20210507-4536f46.diff
 !st/config.h
+playbooks/files/dmenu/source/
+playbooks/files/st/source/
 __pycache__
 venv
 .ansible_vault

@@ -2,13 +2,30 @@
 - name: Compile and build st on localhost
   hosts:
     - localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  pre_tasks:
+    - name: Configure build tools
+      include_tasks: "{{ item }}"
+      with_items:
+        - configure-build-tools.yaml
+        - configure-x11-build-tools.yaml
   tasks:
+    - name: Clone st sources
+      ansible.builtin.git:
+        repo: https://git.suckless.org/st
+        dest: "{{ playbook_dir }}/files/st/source/"
+        version: "6e970474743d57a5d8b054c41fd3bff2bc895742"
+        force: yes
+  
     - name: Copy files for compile
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ playbook_dir }}/files/st/source/"
       loop: "{{ lookup('fileglob', 'st/copy_files/*', wantlist=True) }}"
-
+      
     - name: Apply patches for st
       ansible.posix.patch:
         src: "{{ item }}"
@@ -25,11 +42,3 @@
         src: "{{ playbook_dir }}/files/st/source/st"
         dest: "{{ ansible_env.HOME }}/.local/bin"
         mode: "0775"
-
-    - name: Clean st directory after compile
-      ansible.builtin.command: "{{ item }}"
-      args:
-        chdir: "{{ playbook_dir }}/files/st/source/"
-      loop:
-        - git checkout .
-        - git clean -f

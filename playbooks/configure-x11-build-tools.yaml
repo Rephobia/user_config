@@ -1,0 +1,10 @@
+---
+- name: Ensure X11 and freetype devel packages are installed
+  package:
+    name:
+      - libX11-devel
+      - libXft-devel
+      - libXinerama-devel
+      - freetype-devel
+    state: present
+  become: yes

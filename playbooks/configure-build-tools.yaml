@@ -1,0 +1,10 @@
+---
+- name: Ensure build tools are installed
+  package:
+    name:
+      - gcc
+      - make
+      - cmake
+      - patch
+    state: present
+  become: yes
