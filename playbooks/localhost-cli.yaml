@@ -2,9 +2,21 @@
 - name: Copy cli config files
   hosts:
     - localhost
+  pre_tasks:
+    - name: Configure local bin directory
+      include_tasks: "{{ item }}"
+      with_items:
+        - configure-local-bin.yaml
   tasks:
     - name: Copy files to home directory
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ ansible_env.HOME }}"
       loop: "{{ lookup('fileglob', 'cli/.*', wantlist=True) }}"
+
+    - name: Copy scripts to local bin
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.local/bin/"
+        mode: a+x
+      loop: "{{ lookup('fileglob', 'bin/*', wantlist=True) }}"
