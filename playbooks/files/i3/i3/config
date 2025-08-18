@@ -5,6 +5,7 @@ exec_always feh --bg-scale ~/.config/i3/wallpapers/solaris.png
 exec_always --no-startup-id ~/.config/i3/scripts/set_hertz.py --mode 1920x1080 --rate 144
 exec_always --no-startup-id emacs --daemon
 exec_always --no-startup-id nm-applet
+exec_always --no-startup-id ~/config/i3/scripts/keep-awake.sh
 
 # KDE FIX begin
 
