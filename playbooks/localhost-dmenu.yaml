@@ -12,6 +12,7 @@
       with_items:
         - configure-build-tools.yaml
         - configure-x11-build-tools.yaml
+        - configure-local-bin.yaml
   tasks:
     - name: Clone dmenu sources
       ansible.builtin.git:
@@ -36,11 +37,6 @@
     - name: Build the default target
       make:
         chdir: "{{ playbook_dir }}/files/dmenu/source/"
-        
-    - name: Ensure ~/.local/bin directory exists
-      file:
-        path: "{{ ansible_env.HOME }}/.local/bin/"
-        state: directory
         
     - name: Copy dmenu binary to .local/bin
       ansible.builtin.copy:

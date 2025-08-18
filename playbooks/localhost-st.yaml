@@ -12,6 +12,7 @@
       with_items:
         - configure-build-tools.yaml
         - configure-x11-build-tools.yaml
+        - configure-local-bin.yaml
   tasks:
     - name: Clone st sources
       ansible.builtin.git:

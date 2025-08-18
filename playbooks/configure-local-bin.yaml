@@ -1,0 +1,5 @@
+---
+- name: Ensure ~/.local/bin directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin/"
+    state: directory
