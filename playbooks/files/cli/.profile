@@ -24,3 +24,4 @@ fi
 # EDITORS
 export EDITOR="nano"
 export ALTERNATE_EDITOR=""
+export LC_TIME=ru_RU.UTF-8
