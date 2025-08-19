@@ -7,15 +7,15 @@
       prompt: "Sudo password"
       private: yes
   tasks:
-    - name: Ensure feh and i3 package is installed
+    - name: Ensure feh, i3, xset packages are installed
       package:
         name:
           - feh
           - i3
+          - xset
         state: present
       become: yes
       tags: laptop, desktop
-
 
     - name: Ensure i3 directories exist
       file:
