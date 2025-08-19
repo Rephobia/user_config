@@ -1,0 +1,39 @@
+---
+- name: Configure samba on localhost
+  hosts: localhost
+  no_log: false
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+
+  tasks:
+    - name: Ensure ~/.credentials/ directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.credentials/"
+        state: directory
+
+    - name: Copy credentials (for fstab mounts)
+      ansible.builtin.copy:
+        dest: "{{ ansible_env.HOME }}/.credentials/smb"
+        content: |
+          user={{ hostvars.nas.nas_user }}
+          password={{ hostvars.nas.nas_samba_user_password }}
+          domain={{ hostvars.nas.ansible_host }}
+
+    - name: Add samba host to fstab file
+      become: yes
+      blockinfile:
+        path: /etc/fstab
+        state: present
+        block: |
+          //{{ hostvars.nas.ansible_host }}/{{ hostvars.nas.nas_samba_shares_name }}    /media/{{ hostvars.nas.nas_samba_shares_name }}       cifs    uid=0,credentials={{ ansible_env.HOME }}/.credentials/smb,iocharset=utf8,vers=3.0,noperm 0 0
+
+    - name: Ensure mount directory exists
+      become: yes
+      file:
+        path: "/media/{{ hostvars.nas.nas_samba_shares_name }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'

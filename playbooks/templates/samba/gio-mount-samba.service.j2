@@ -1,0 +1,15 @@
+[Unit]
+Description=Mount NAS share via GIO
+After=graphical.target
+Wants=graphical.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/sh -c '/usr/bin/gio mount -l | grep -q "smb://{{ hostvars.nas.nas_user }}@{{ hostvars.nas.ansible_host }}/{{ hostvars.nas.nas_samba_shares_name }}" && echo "Already mounted, skipping" || /usr/bin/gio mount smb://{{ hostvars.nas.nas_user }}@{{ hostvars.nas.ansible_host }}/{{ hostvars.nas.nas_samba_shares_name }}'
+
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=default.target

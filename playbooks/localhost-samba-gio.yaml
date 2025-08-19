@@ -1,0 +1,42 @@
+---
+- name: Configure samba on localhost
+  hosts: localhost
+  no_log: false
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+
+  tasks:
+    - name: Install gvfs packages (for samba integration in GUI apps)
+      become: yes
+      package:
+        name:
+          - gvfs
+          - gvfs-smb
+        state: present
+    
+    - name: Ensure systemd user directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/systemd/user"
+        state: directory
+
+    - name: Deploy mount-samba service
+      template:
+        src: samba/gio-mount-samba.service.j2
+        dest: "{{ ansible_env.HOME }}/.config/systemd/user/gio-mount-samba.service"
+      notify:
+        - Reload systemd user daemon
+        - Enable and start gio-mount-samba
+
+  handlers:
+    - name: Reload systemd user daemon
+      command: systemctl --user daemon-reload
+      become: false
+
+    - name: Enable and start gio-mount-samba
+      systemd:
+        name: gio-mount-samba.service
+        enabled: yes
+        state: restarted
+        scope: user

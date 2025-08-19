@@ -47,9 +47,13 @@ localhost-dmenu:
 localhost-syncthing:
     just playbook localhost-syncthing
 
-# configure samba
-localhost-samba:
-    just playbook localhost-samba
+# configure (mount) samba with fstab
+localhost-samba-fstab:
+    just playbook localhost-samba-fstab
+    
+# configure (mount) samba with gio
+localhost-samba-gio:
+    just playbook localhost-samba-gio
 
 # run all localhost playbooks
 localhost-all:
