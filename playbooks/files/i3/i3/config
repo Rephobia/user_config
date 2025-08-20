@@ -147,9 +147,8 @@ bindsym $mod+grave mode "command"
 bindsym $mod+w workspace 1:default:w;
 bindsym $mod+e workspace 2:default:e;
 bindsym $mod+r workspace 3:default:r;
-bindsym $mod+s workspace 4:default:s;
-bindsym $mod+d workspace 5:default:d;
-bindsym $mod+f workspace 6:default:f;
+bindsym $mod+d workspace 4:default:d;
+bindsym $mod+f workspace 5:default:f;
 
 bindsym $mod+b workspace 14:command:b;
 bindsym $mod+t workspace 11:command:t;
@@ -157,9 +156,8 @@ bindsym $mod+t workspace 11:command:t;
 bindsym $mod+Shift+w move container to workspace 1:default:w;
 bindsym $mod+Shift+e move container to workspace 2:default:e;
 bindsym $mod+Shift+r move container to workspace 3:default:r;
-bindsym $mod+Shift+s move container to workspace 4:default:s;
-bindsym $mod+Shift+d move container to workspace 5:default:d;
-bindsym $mod+Shift+f move container to workspace 6:default:f;
+bindsym $mod+Shift+d move container to workspace 4:default:d;
+bindsym $mod+Shift+f move container to workspace 5:default:f;
 
 bindsym $mod+Shift+b move container to workspace 14:command:b;
 bindsym $mod+Shift+t move container to workspace 11:command:t;
@@ -180,9 +178,8 @@ mode "main" {
      bindsym $mod+w workspace 1:main:w;
      bindsym $mod+e workspace 2:main:e;
      bindsym $mod+r workspace 3:main:r;
-     bindsym $mod+s workspace 4:main:s;
-     bindsym $mod+d workspace 5:main:d;
-     bindsym $mod+f workspace 6:main:f;
+     bindsym $mod+d workspace 4:main:d;
+     bindsym $mod+f workspace 5:main:f;
 
      bindsym $mod+b workspace 14:command:b;
      bindsym $mod+t workspace 11:command:t;
@@ -190,9 +187,8 @@ mode "main" {
      bindsym $mod+Shift+w move container to workspace 1:main:w;
      bindsym $mod+Shift+e move container to workspace 2:main:e;
      bindsym $mod+Shift+r move container to workspace 3:main:r;
-     bindsym $mod+Shift+s move container to workspace 4:main:s;
-     bindsym $mod+Shift+d move container to workspace 5:main:d;
-     bindsym $mod+Shift+f move container to workspace 6:main:f;
+     bindsym $mod+Shift+d move container to workspace 4:main:d;
+     bindsym $mod+Shift+f move container to workspace 5:main:f;
 
      bindsym $mod+Shift+b move container to workspace 14:command:b;
      bindsym $mod+Shift+t move container to workspace 11:command:t;
@@ -217,9 +213,8 @@ mode "sec" {
      bindsym $mod+w workspace 1:sec:w;
      bindsym $mod+e workspace 2:sec:e;
      bindsym $mod+r workspace 3:sec:r;
-     bindsym $mod+s workspace 4:sec:s;
-     bindsym $mod+d workspace 5:sec:d;
-     bindsym $mod+f workspace 6:sec:f;
+     bindsym $mod+d workspace 4:sec:d;
+     bindsym $mod+f workspace 5:sec:f;
      
      bindsym $mod+b workspace 14:command:b;
      bindsym $mod+t workspace 11:command:t;
@@ -227,9 +222,8 @@ mode "sec" {
      bindsym $mod+Shift+w move container to workspace 1:sec:w;
      bindsym $mod+Shift+e move container to workspace 2:sec:e;
      bindsym $mod+Shift+r move container to workspace 3:sec:r;
-     bindsym $mod+Shift+s move container to workspace 4:sec:s;
-     bindsym $mod+Shift+d move container to workspace 5:sec:d;
-     bindsym $mod+Shift+f move container to workspace 6:sec:f;
+     bindsym $mod+Shift+d move container to workspace 4:sec:d;
+     bindsym $mod+Shift+f move container to workspace 5:sec:f;
      
      bindsym $mod+Shift+b move container to workspace 14:command:b;
      bindsym $mod+Shift+t move container to workspace 11:command:t;
