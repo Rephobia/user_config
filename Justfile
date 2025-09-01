@@ -19,9 +19,13 @@ playbook playbook: venv
 playbook-with-tags playbook tags: venv
     ./venv/bin/ansible-playbook -i inventory.yaml playbooks/{{playbook}}.yaml --vault-password-file .ansible_vault -t {{tags}}
 
-# configure st
+# configure st terminal
 localhost-st:
     just playbook localhost-st
+
+# configure kitty terminal
+localhost-kitty:
+    just playbook localhost-kitty
 
 # configure cli (.bashrc, .inputrc)
 localhost-cli:
@@ -57,7 +61,7 @@ localhost-samba-gio:
 
 # run all localhost playbooks
 localhost-all:
-    just localhost-st
+    just localhost-kitty
     just localhost-cli
     just localhost-i3
     just localhost-gpg
