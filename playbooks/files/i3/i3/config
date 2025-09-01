@@ -5,7 +5,7 @@ exec_always feh --bg-scale ~/.config/i3/wallpapers/solaris.png
 exec_always --no-startup-id ~/.config/i3/scripts/set_hertz.py --mode 1920x1080 --rate 144
 exec_always --no-startup-id emacs --daemon
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id ~/config/i3/scripts/keep-awake.sh
+exec_always --no-startup-id ~/config/i3/scripts/video-nosleep.sh
 
 # KDE FIX begin
 
@@ -49,7 +49,7 @@ set $mod mod1
 
 # run
 bindcode 133 exec dmenu_run_with_history
-bindsym $mod+Return exec ptyxis --new-window
+bindsym $mod+Return exec kitty
 bindsym Print exec flameshot gui
 
 # window setting
