@@ -1,0 +1,27 @@
+---
+- name: Configure kitty terminal
+  hosts:
+    - localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  tasks:
+    - name: Ensure kitty package is installed
+      package:
+        name:
+          - kitty
+        state: present
+      become: yes
+
+    - name: Ensure kitty directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ ansible_env.HOME }}/.config/kitty"
+     
+    - name: Copy kitty config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/kitty/kitty.conf"
+        dest: "{{ ansible_env.HOME }}/.config/kitty/kitty.conf"
