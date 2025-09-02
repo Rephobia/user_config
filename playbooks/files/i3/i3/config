@@ -48,7 +48,7 @@ exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 set $mod mod1
 
 # run
-bindcode 133 exec rofi -show run 
+bindcode 133 exec "~/.config/i3/scripts/rofi-launcher.sh run"
 bindsym $mod+Return exec kitty
 bindsym Print exec flameshot gui
 
