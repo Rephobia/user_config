@@ -46,6 +46,10 @@ localhost-gpg:
 # configure dmenu
 localhost-dmenu:
     just playbook localhost-dmenu
+    
+# configure dmenu
+localhost-rofi:
+    just playbook localhost-rofi
 
 # configure syncthing
 localhost-syncthing:
@@ -65,7 +69,7 @@ localhost-all:
     just localhost-cli
     just localhost-i3
     just localhost-gpg
-    just localhost-dmenu
+    just localhost-rofi
     just localhost-samba
 
 # configure qbittorrent on nas

@@ -1,0 +1,27 @@
+---
+- name: Configure rofi
+  hosts:
+    - localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  tasks:
+    - name: Ensure rofi package is installed
+      package:
+        name:
+          - rofi
+        state: present
+      become: yes
+
+    - name: Ensure rofi directories exist
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ ansible_env.HOME }}/.config/rofi"
+     
+    - name: Copy rofi config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/rofi"
+        dest: "{{ ansible_env.HOME }}/.config/"

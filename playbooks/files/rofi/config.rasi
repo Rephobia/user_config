@@ -1,0 +1,28 @@
+configuration {
+    /* Основные параметры */
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus";           /* или любой другой */
+    terminal: "kitty";           /* твой терминал */
+    font: "Consolas 12";
+
+    /* История команд в run */
+    run-command: "{cmd}";
+    run-list-command: "";
+    run-use-history: true;
+    drun-use-desktop-cache: true;
+    drun-show-actions: true;
+
+    /* Количество элементов */
+    lines: 12;
+    columns: 1;
+
+    /* Сортировка drun по частоте */
+    sorting-method: "fzf";           /* лучший поиск */
+
+    kb-row-down: "Alt+k";     // Следующий элемент
+    kb-row-up: "Alt+i";       // Предыдущий элемент
+}
+
+@theme "~/.config/rofi/theme.rasi"
+
