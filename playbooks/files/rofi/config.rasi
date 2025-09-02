@@ -1,9 +1,8 @@
 configuration {
     /* Основные параметры */
     modi: "drun,run,window";
-    show-icons: true;
-    icon-theme: "Papirus";           /* или любой другой */
-    terminal: "kitty";           /* твой терминал */
+    show-icons: false;
+    terminal: "kitty";
     font: "Consolas 12";
 
     /* История команд в run */
@@ -17,11 +16,14 @@ configuration {
     lines: 12;
     columns: 1;
 
-    /* Сортировка drun по частоте */
-    sorting-method: "fzf";           /* лучший поиск */
+    display-drun: "";
+    display-run: "";
+    display-window: "";
 
-    kb-row-down: "Alt+k";     // Следующий элемент
-    kb-row-up: "Alt+i";       // Предыдущий элемент
+    sorting-method: "fzf";
+
+    kb-row-down: "Alt+k";
+    kb-row-up: "Alt+i";
 }
 
 @theme "~/.config/rofi/theme.rasi"
