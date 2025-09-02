@@ -13,6 +13,7 @@
           - feh
           - i3
           - xset
+          - picom
         state: present
       become: yes
       tags: laptop, desktop
@@ -49,4 +50,19 @@
         path: "{{ ansible_env.HOME }}/.config/i3/scripts"
         mode: a+x
         recurse: true
+      tags: laptop, desktop
+      
+    - name: Ensure picom config directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - "{{ ansible_env.HOME }}/.config/picom"
+        - "{{ ansible_env.HOME }}/.config/i3status"
+      tags: laptop, desktop 
+
+    - name: Copy picom
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/picom/picom.conf"
+        dest: "{{ ansible_env.HOME }}/.config/picom/picom.conf"
       tags: laptop, desktop

@@ -1,6 +1,6 @@
 # system init
 exec_always --no-startup-id "sleep 1; setxkbmap -layout us,ru -option grp:caps_toggle" # wtf ubuntu 22.04, need sleep 1. Mb gnome try to remap caps lock
-exec --no-startup-id compton -b
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always feh --bg-scale ~/.config/i3/wallpapers/solaris.png
 exec_always --no-startup-id ~/.config/i3/scripts/set_hertz.py --mode 1920x1080 --rate 144
 exec_always --no-startup-id emacs --daemon
@@ -48,7 +48,7 @@ exec_always --no-startup-id alsactl --file ~/.config/asound.state restore
 set $mod mod1
 
 # run
-bindcode 133 exec dmenu_run_with_history
+bindcode 133 exec rofi -show run 
 bindsym $mod+Return exec kitty
 bindsym Print exec flameshot gui
 
