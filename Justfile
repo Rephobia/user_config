@@ -84,6 +84,10 @@ nas-samba:
 nas-syncthing:
     just playbook nas-syncthing
 
+# configure syncthing on nas
+nas-reverse-proxy:
+    just playbook nas-reverse-proxy
+
 # run all nas playbooks
 nas-all:
     just nas-qbittorrent

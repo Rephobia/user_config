@@ -1,0 +1,96 @@
+- hosts: nas
+  become: true
+  tasks:
+    - name: Turn-off systemd-resolved
+      systemd:
+        name: systemd-resolved
+        state: stopped
+        enabled: no
+
+    - name: Write servers DNS to /etc/resolv.conf
+      copy:
+        dest: /etc/resolv.conf
+        content: |
+          {% for ns in dns_servers %}
+          nameserver {{ ns }}
+          {% endfor %}
+
+    - name: Ensure nginx and dnsmasq installed
+      apt:
+        name:
+          - nginx
+          - dnsmasq
+        state: present
+        update_cache: yes
+
+    - name: Configure dnsmasq wildcard *.nas.loc
+      copy:
+        dest: /etc/dnsmasq.d/nas.conf
+        content: |
+          bind-interfaces
+          listen-address={{ nas_ip }}
+          address=/.nas.loc/{{ nas_ip }}
+      notify: Restart dnsmasq
+
+    - name: Configure nginx wildcard *.nas.loc
+      copy:
+        dest: /etc/nginx/sites-available/nas_wildcard
+        content: |
+          map $host $upstream_host {
+              default 127.0.0.1;
+              {% for name, service in nas_services.items() %}
+              {{ name }}.nas.loc {{ service.host }};
+              {% endfor %}
+          }
+
+          map $host $upstream_port {
+              default 80;
+              {% for name, service in nas_services.items() %}
+              {{ name }}.nas.loc {{ service.port }};
+              {% endfor %}
+          }
+
+          server {
+              listen 80;
+              server_name *.nas.loc;
+
+              location / {
+                  proxy_pass http://$upstream_host:$upstream_port;
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Real-IP $remote_addr;
+              }
+          }
+      notify: Reload nginx
+
+    - name: Turn on nginx
+      file:
+        src: /etc/nginx/sites-available/nas_wildcard
+        dest: /etc/nginx/sites-enabled/nas_wildcard
+        state: link
+      notify: Reload nginx
+
+  handlers:
+    - name: Restart dnsmasq
+      systemd:
+        name: dnsmasq
+        state: restarted
+        enabled: yes
+
+    - name: Reload nginx
+      systemd:
+        name: nginx
+        state: reloaded
+
+- hosts: localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+  tasks:
+    - name: Add nas services to /etc/hosts
+      become: true
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ nas_ip }} {{ item }}.nas.loc"
+        state: present
+      loop: "{{ nas_services.keys() }}"
