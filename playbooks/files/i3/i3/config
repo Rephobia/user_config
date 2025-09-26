@@ -49,7 +49,7 @@ set $mod mod1
 
 # run
 bindcode 133 exec "~/.config/i3/scripts/rofi-launcher.sh run"
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm
 bindsym Print exec flameshot gui
 
 # window setting

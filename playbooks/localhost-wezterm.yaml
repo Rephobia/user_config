@@ -1,0 +1,28 @@
+---
+- name: Install WezTerm via COPR on Fedora
+  hosts: localhost
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo password"
+      private: yes
+
+  tasks:
+    - name: Enable wezterm-nightly COPR repository
+      command: dnf copr enable -y wezfurlong/wezterm-nightly
+      become: yes
+
+    - name: Install WezTerm
+      dnf:
+        name: wezterm
+        state: present
+      become: yes
+
+    - name: Ensure wezterm config directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/wezterm"
+        state: directory
+
+    - name: Copy wezterm config
+      copy:
+        src: "{{ playbook_dir }}/files/wezterm/wezterm.lua"
+        dest: "{{ ansible_env.HOME }}/.config/wezterm/wezterm.lua"

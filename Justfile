@@ -27,6 +27,10 @@ localhost-st:
 localhost-kitty:
     just playbook localhost-kitty
 
+# configure wezterm terminal
+localhost-wezterm:
+    just playbook localhost-wezterm
+
 # configure cli (.bashrc, .inputrc)
 localhost-cli:
     just playbook localhost-cli
@@ -65,7 +69,7 @@ localhost-samba-gio:
 
 # run all localhost playbooks
 localhost-all:
-    just localhost-kitty
+    just localhost-wezterm
     just localhost-cli
     just localhost-i3
     just localhost-gpg
