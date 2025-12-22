@@ -11,5 +11,9 @@ alias ll='ls -lah'
 # ---- Prompt ----
 PS1='[\u@\h \W]\$ '
 
+# ---- ssh agent ---- 
+eval "$(keychain --eval --agents ssh id_rsa_foobar)"
+
 # ---- Custom aliases ----
 # (сюда можно добавлять всякие полезные мелочи типа alias g=git и т.д.)
+
