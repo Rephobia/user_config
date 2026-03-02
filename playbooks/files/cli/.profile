@@ -23,5 +23,6 @@ fi
 
 # EDITORS
 export EDITOR="nano"
+export SOPS_EDITOR="emacsclientrus"
 export ALTERNATE_EDITOR=""
 export LC_TIME=ru_RU.UTF-8

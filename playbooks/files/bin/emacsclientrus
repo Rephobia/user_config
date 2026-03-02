@@ -1,2 +1,11 @@
 #!/bin/bash
-emacsclient -s lucid -c -a "" --eval "(cfg:reverse-input-method 'russian-computer)" "$@"
+
+if [ $# -eq 0 ]; then
+    emacsclient -s lucid -c -a "" --eval "(cfg:reverse-input-method 'russian-computer)"
+else
+    for file in "$@"; do
+        emacsclient -s lucid -c -a "" --eval "(progn \
+            (find-file \"$file\") \
+            (cfg:reverse-input-method 'russian-computer))"
+    done
+fi
