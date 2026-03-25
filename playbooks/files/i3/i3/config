@@ -253,7 +253,7 @@ client.unfocused $background $background $minor_text #000000 $background
 bar {
     workspace_command ~/.config/i3/scripts/render_i3bar.sh
 
-    status_command i3status
+    status_command i3blocks
     mode dock
     separator_symbol " | "
     workspace_buttons yes

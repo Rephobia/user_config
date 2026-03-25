@@ -24,7 +24,7 @@
         state: directory
       loop:
         - "{{ ansible_env.HOME }}/.config/i3"
-        - "{{ ansible_env.HOME }}/.config/i3status"
+        - "{{ ansible_env.HOME }}/.config/i3blocks"
       tags: laptop, desktop 
      
     - name: Copy i3wm config
@@ -33,25 +33,34 @@
         dest: "{{ ansible_env.HOME }}/.config/"
       tags: laptop, desktop
 
-    - name: Copy i3bar for laptop config
+    - name: Copy i3blocks for laptop config
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/files/i3/i3status/config-laptop"
-        dest: "{{ ansible_env.HOME }}/.config/i3status/config"
+        src: "{{ playbook_dir }}/files/i3/i3blocks/config-laptop"
+        dest: "{{ ansible_env.HOME }}/.config/i3blocks/config"
       tags: laptop
       
-    - name: Copy i3bar for desktop config
+    - name: Copy i3blocks for desktop config
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/files/i3/i3status/config-desktop"
-        dest: "{{ ansible_env.HOME }}/.config/i3status/config"
+        src: "{{ playbook_dir }}/files/i3/i3blocks/config-desktop"
+        dest: "{{ ansible_env.HOME }}/.config/i3blocks/config"
       tags: desktop
+
+    - name: Copy i3blocks scripts
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/i3/i3blocks/scripts"
+        dest: "{{ ansible_env.HOME }}/.config/i3blocks/"
+      tags: laptop, desktop
 
     - name: Changing perm of script files, adding "+x"
       file:
-        path: "{{ ansible_env.HOME }}/.config/i3/scripts"
+        path: "{{ item }}"
         mode: a+x
         recurse: true
       tags: laptop, desktop
-      
+      loop:
+         - "{{ ansible_env.HOME }}/.config/i3blocks/scripts"
+         - "{{ ansible_env.HOME }}/.config/i3/scripts"
+
     - name: Ensure picom config directory exists
       file:
         path: "{{ item }}"

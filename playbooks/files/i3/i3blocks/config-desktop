@@ -1,0 +1,7 @@
+[vpn]
+command=~/.config/i3blocks/scripts/server-vpn-toggle.sh
+interval=5
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
