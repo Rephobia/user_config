@@ -1,5 +1,19 @@
+[disk]
+label= 
+instance=/
+command=df -h -P / | awk '{print $4}' | tail -1
+interval=30
+
+
+[disk]
+label= 
+instance=/
+command=~/.config/i3blocks/scripts/nas-space.sh
+interval=30
+
 [vpn]
-command=~/.config/i3blocks/scripts/server-vpn-toggle.sh
+label= 
+command=~/.config/i3blocks/scripts/nas-vpn-toggle.sh
 interval=5
 
 [time]
